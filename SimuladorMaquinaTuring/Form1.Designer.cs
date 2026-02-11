@@ -35,29 +35,29 @@
             this.grbCaptura = new System.Windows.Forms.GroupBox();
             this.dgvCinta = new System.Windows.Forms.DataGridView();
             this.grbMover = new System.Windows.Forms.GroupBox();
-            this.grbEscribir = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.btnEscribirIzq = new System.Windows.Forms.Button();
-            this.brnEscribirDer = new System.Windows.Forms.Button();
-            this.btnCabezalIzquirda = new System.Windows.Forms.Button();
             this.btnCabezalDerecha = new System.Windows.Forms.Button();
+            this.btnCabezalIzquirda = new System.Windows.Forms.Button();
+            this.grbEscribir = new System.Windows.Forms.GroupBox();
+            this.btnEscribirN = new System.Windows.Forms.Button();
+            this.brnEscribirDer = new System.Windows.Forms.Button();
+            this.btnEscribirIzq = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.grbLectura = new System.Windows.Forms.GroupBox();
             this.lblLeyendo = new System.Windows.Forms.Label();
             this.grbBusqueda = new System.Windows.Forms.GroupBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.btnBusqueda = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.button6 = new System.Windows.Forms.Button();
+            this.cboLetraBusqueda = new System.Windows.Forms.ComboBox();
             this.grbBusquedaEscritura = new System.Windows.Forms.GroupBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.txtOcurrencia = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.button5 = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtOcurrencia = new System.Windows.Forms.TextBox();
-            this.btnEscribirN = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.grbCaptura.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCinta)).BeginInit();
             this.grbMover.SuspendLayout();
@@ -130,6 +130,7 @@
             this.dgvCinta.RowTemplate.Height = 24;
             this.dgvCinta.Size = new System.Drawing.Size(748, 87);
             this.dgvCinta.TabIndex = 5;
+            this.dgvCinta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCinta_CellContentClick);
             // 
             // grbMover
             // 
@@ -142,6 +143,32 @@
             this.grbMover.TabIndex = 6;
             this.grbMover.TabStop = false;
             this.grbMover.Text = "Mover Cabezal";
+            // 
+            // btnCabezalDerecha
+            // 
+            this.btnCabezalDerecha.AutoSize = true;
+            this.btnCabezalDerecha.Font = new System.Drawing.Font("Impact", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCabezalDerecha.Location = new System.Drawing.Point(90, 35);
+            this.btnCabezalDerecha.Name = "btnCabezalDerecha";
+            this.btnCabezalDerecha.Size = new System.Drawing.Size(75, 38);
+            this.btnCabezalDerecha.TabIndex = 4;
+            this.btnCabezalDerecha.Text = "→";
+            this.btnCabezalDerecha.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnCabezalDerecha.UseVisualStyleBackColor = true;
+            this.btnCabezalDerecha.Click += new System.EventHandler(this.btnCabezalDerecha_Click);
+            // 
+            // btnCabezalIzquirda
+            // 
+            this.btnCabezalIzquirda.AutoSize = true;
+            this.btnCabezalIzquirda.Font = new System.Drawing.Font("Impact", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCabezalIzquirda.Location = new System.Drawing.Point(9, 35);
+            this.btnCabezalIzquirda.Name = "btnCabezalIzquirda";
+            this.btnCabezalIzquirda.Size = new System.Drawing.Size(75, 38);
+            this.btnCabezalIzquirda.TabIndex = 4;
+            this.btnCabezalIzquirda.Text = "←";
+            this.btnCabezalIzquirda.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnCabezalIzquirda.UseVisualStyleBackColor = true;
+            this.btnCabezalIzquirda.Click += new System.EventHandler(this.btnCabezalIzquirda_Click);
             // 
             // grbEscribir
             // 
@@ -158,14 +185,39 @@
             this.grbEscribir.TabStop = false;
             this.grbEscribir.Text = "Escritura";
             // 
-            // label3
+            // btnEscribirN
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 29);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(46, 16);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Letra : ";
+            this.btnEscribirN.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEscribirN.Location = new System.Drawing.Point(81, 68);
+            this.btnEscribirN.Name = "btnEscribirN";
+            this.btnEscribirN.Size = new System.Drawing.Size(50, 38);
+            this.btnEscribirN.TabIndex = 4;
+            this.btnEscribirN.Text = "N";
+            this.btnEscribirN.UseVisualStyleBackColor = true;
+            // 
+            // brnEscribirDer
+            // 
+            this.brnEscribirDer.AutoSize = true;
+            this.brnEscribirDer.Font = new System.Drawing.Font("Impact", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.brnEscribirDer.Location = new System.Drawing.Point(137, 68);
+            this.brnEscribirDer.Name = "brnEscribirDer";
+            this.brnEscribirDer.Size = new System.Drawing.Size(54, 38);
+            this.brnEscribirDer.TabIndex = 3;
+            this.brnEscribirDer.Text = "→";
+            this.brnEscribirDer.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.brnEscribirDer.UseVisualStyleBackColor = true;
+            // 
+            // btnEscribirIzq
+            // 
+            this.btnEscribirIzq.AutoSize = true;
+            this.btnEscribirIzq.Font = new System.Drawing.Font("Impact", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEscribirIzq.Location = new System.Drawing.Point(19, 68);
+            this.btnEscribirIzq.Name = "btnEscribirIzq";
+            this.btnEscribirIzq.Size = new System.Drawing.Size(52, 38);
+            this.btnEscribirIzq.TabIndex = 2;
+            this.btnEscribirIzq.Text = "←";
+            this.btnEscribirIzq.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnEscribirIzq.UseVisualStyleBackColor = true;
             // 
             // comboBox1
             // 
@@ -180,55 +232,14 @@
             this.comboBox1.Size = new System.Drawing.Size(121, 24);
             this.comboBox1.TabIndex = 1;
             // 
-            // btnEscribirIzq
+            // label3
             // 
-            this.btnEscribirIzq.AutoSize = true;
-            this.btnEscribirIzq.Font = new System.Drawing.Font("Impact", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEscribirIzq.Location = new System.Drawing.Point(19, 68);
-            this.btnEscribirIzq.Name = "btnEscribirIzq";
-            this.btnEscribirIzq.Size = new System.Drawing.Size(52, 38);
-            this.btnEscribirIzq.TabIndex = 2;
-            this.btnEscribirIzq.Text = "←";
-            this.btnEscribirIzq.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnEscribirIzq.UseVisualStyleBackColor = true;
-            // 
-            // brnEscribirDer
-            // 
-            this.brnEscribirDer.AutoSize = true;
-            this.brnEscribirDer.Font = new System.Drawing.Font("Impact", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.brnEscribirDer.Location = new System.Drawing.Point(137, 68);
-            this.brnEscribirDer.Name = "brnEscribirDer";
-            this.brnEscribirDer.Size = new System.Drawing.Size(54, 38);
-            this.brnEscribirDer.TabIndex = 3;
-            this.brnEscribirDer.Text = "→";
-            this.brnEscribirDer.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.brnEscribirDer.UseVisualStyleBackColor = true;
-            // 
-            // btnCabezalIzquirda
-            // 
-            this.btnCabezalIzquirda.AutoSize = true;
-            this.btnCabezalIzquirda.Font = new System.Drawing.Font("Impact", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCabezalIzquirda.Location = new System.Drawing.Point(9, 35);
-            this.btnCabezalIzquirda.Name = "btnCabezalIzquirda";
-            this.btnCabezalIzquirda.Size = new System.Drawing.Size(75, 38);
-            this.btnCabezalIzquirda.TabIndex = 4;
-            this.btnCabezalIzquirda.Text = "←";
-            this.btnCabezalIzquirda.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnCabezalIzquirda.UseVisualStyleBackColor = true;
-            this.btnCabezalIzquirda.Click += new System.EventHandler(this.btnCabezalIzquirda_Click);
-            // 
-            // btnCabezalDerecha
-            // 
-            this.btnCabezalDerecha.AutoSize = true;
-            this.btnCabezalDerecha.Font = new System.Drawing.Font("Impact", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCabezalDerecha.Location = new System.Drawing.Point(90, 35);
-            this.btnCabezalDerecha.Name = "btnCabezalDerecha";
-            this.btnCabezalDerecha.Size = new System.Drawing.Size(75, 38);
-            this.btnCabezalDerecha.TabIndex = 4;
-            this.btnCabezalDerecha.Text = "→";
-            this.btnCabezalDerecha.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnCabezalDerecha.UseVisualStyleBackColor = true;
-            this.btnCabezalDerecha.Click += new System.EventHandler(this.btnCabezalDerecha_Click);
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 29);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(46, 16);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Letra : ";
             // 
             // label4
             // 
@@ -263,9 +274,9 @@
             // 
             // grbBusqueda
             // 
-            this.grbBusqueda.Controls.Add(this.button6);
+            this.grbBusqueda.Controls.Add(this.btnBusqueda);
             this.grbBusqueda.Controls.Add(this.label5);
-            this.grbBusqueda.Controls.Add(this.comboBox2);
+            this.grbBusqueda.Controls.Add(this.cboLetraBusqueda);
             this.grbBusqueda.Enabled = false;
             this.grbBusqueda.Location = new System.Drawing.Point(770, 25);
             this.grbBusqueda.Name = "grbBusqueda";
@@ -274,18 +285,15 @@
             this.grbBusqueda.TabStop = false;
             this.grbBusqueda.Text = "Busqueda";
             // 
-            // comboBox2
+            // btnBusqueda
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "x",
-            "y",
-            "z",
-            "B"});
-            this.comboBox2.Location = new System.Drawing.Point(58, 25);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(83, 24);
-            this.comboBox2.TabIndex = 4;
+            this.btnBusqueda.Location = new System.Drawing.Point(49, 55);
+            this.btnBusqueda.Name = "btnBusqueda";
+            this.btnBusqueda.Size = new System.Drawing.Size(105, 33);
+            this.btnBusqueda.TabIndex = 5;
+            this.btnBusqueda.Text = "Buscar";
+            this.btnBusqueda.UseVisualStyleBackColor = true;
+            this.btnBusqueda.Click += new System.EventHandler(this.btnBusqueda_Click);
             // 
             // label5
             // 
@@ -296,14 +304,18 @@
             this.label5.TabIndex = 4;
             this.label5.Text = "Letra : ";
             // 
-            // button6
+            // cboLetraBusqueda
             // 
-            this.button6.Location = new System.Drawing.Point(49, 55);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(105, 33);
-            this.button6.TabIndex = 5;
-            this.button6.Text = "Buscar";
-            this.button6.UseVisualStyleBackColor = true;
+            this.cboLetraBusqueda.FormattingEnabled = true;
+            this.cboLetraBusqueda.Items.AddRange(new object[] {
+            "x",
+            "y",
+            "z",
+            "B"});
+            this.cboLetraBusqueda.Location = new System.Drawing.Point(58, 25);
+            this.cboLetraBusqueda.Name = "cboLetraBusqueda";
+            this.cboLetraBusqueda.Size = new System.Drawing.Size(83, 24);
+            this.cboLetraBusqueda.TabIndex = 4;
             // 
             // grbBusquedaEscritura
             // 
@@ -322,27 +334,30 @@
             this.grbBusquedaEscritura.TabStop = false;
             this.grbBusquedaEscritura.Text = "Busqueda y Remplazar ";
             // 
-            // label6
+            // txtOcurrencia
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(7, 32);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(66, 16);
-            this.label6.TabIndex = 6;
-            this.label6.Text = "Busacar : ";
+            this.txtOcurrencia.Location = new System.Drawing.Point(94, 109);
+            this.txtOcurrencia.Name = "txtOcurrencia";
+            this.txtOcurrencia.Size = new System.Drawing.Size(51, 22);
+            this.txtOcurrencia.TabIndex = 11;
             // 
-            // comboBox3
+            // label8
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
-            "x",
-            "y",
-            "z",
-            "B"});
-            this.comboBox3.Location = new System.Drawing.Point(88, 29);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(83, 24);
-            this.comboBox3.TabIndex = 7;
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(7, 112);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(81, 16);
+            this.label8.TabIndex = 10;
+            this.label8.Text = "Ocurrencia : ";
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(66, 163);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(105, 33);
+            this.button5.TabIndex = 6;
+            this.button5.Text = "Buscar";
+            this.button5.UseVisualStyleBackColor = true;
             // 
             // label7
             // 
@@ -367,40 +382,27 @@
             this.comboBox4.TabIndex = 9;
             this.comboBox4.SelectedIndexChanged += new System.EventHandler(this.comboBox4_SelectedIndexChanged);
             // 
-            // button5
+            // label6
             // 
-            this.button5.Location = new System.Drawing.Point(66, 163);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(105, 33);
-            this.button5.TabIndex = 6;
-            this.button5.Text = "Buscar";
-            this.button5.UseVisualStyleBackColor = true;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(7, 32);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(66, 16);
+            this.label6.TabIndex = 6;
+            this.label6.Text = "Busacar : ";
             // 
-            // label8
+            // comboBox3
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(7, 112);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(81, 16);
-            this.label8.TabIndex = 10;
-            this.label8.Text = "Ocurrencia : ";
-            // 
-            // txtOcurrencia
-            // 
-            this.txtOcurrencia.Location = new System.Drawing.Point(94, 109);
-            this.txtOcurrencia.Name = "txtOcurrencia";
-            this.txtOcurrencia.Size = new System.Drawing.Size(51, 22);
-            this.txtOcurrencia.TabIndex = 11;
-            // 
-            // btnEscribirN
-            // 
-            this.btnEscribirN.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEscribirN.Location = new System.Drawing.Point(81, 68);
-            this.btnEscribirN.Name = "btnEscribirN";
-            this.btnEscribirN.Size = new System.Drawing.Size(50, 38);
-            this.btnEscribirN.TabIndex = 4;
-            this.btnEscribirN.Text = "N";
-            this.btnEscribirN.UseVisualStyleBackColor = true;
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Items.AddRange(new object[] {
+            "x",
+            "y",
+            "z",
+            "B"});
+            this.comboBox3.Location = new System.Drawing.Point(88, 29);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(83, 24);
+            this.comboBox3.TabIndex = 7;
             // 
             // x
             // 
@@ -453,9 +455,9 @@
         private System.Windows.Forms.GroupBox grbLectura;
         private System.Windows.Forms.Label lblLeyendo;
         private System.Windows.Forms.GroupBox grbBusqueda;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button btnBusqueda;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cboLetraBusqueda;
         private System.Windows.Forms.GroupBox grbBusquedaEscritura;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox comboBox3;
