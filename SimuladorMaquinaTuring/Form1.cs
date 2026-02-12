@@ -92,9 +92,9 @@ namespace SimuladorMaquinaTuring
         //Pone en rojo el cabezal
         private void IndicarCabezal()
         {
-            if (Cinta.Count == 0) 
+            if (Cinta.Count == 0)
             { return; }
-            foreach(DataGridViewCell cell in dgvCinta.Rows[0].Cells)
+            foreach (DataGridViewCell cell in dgvCinta.Rows[0].Cells)
             {
                 cell.Style.BackColor = Color.White;
             }
@@ -125,7 +125,7 @@ namespace SimuladorMaquinaTuring
         private char Leer()
         {
             return Cinta[Cabezal];
-            
+
         }
         
         private void btnCabezalIzquirda_Click(object sender, EventArgs e)
@@ -138,7 +138,7 @@ namespace SimuladorMaquinaTuring
             MoverCabezalDerecha();
         }
 
-    
+
 
         private void dgvCinta_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -157,13 +157,13 @@ namespace SimuladorMaquinaTuring
             }
             char simboloAEncontrar = buscar[0];
             bool encontrado = false;
-            
+
             grbMover.Enabled = false;  // Bloqueamos controles para que no muevan nada mientras busca
 
             while (Cabezal < Cinta.Count) //Ciclo de busqueda hacía la derecha
             {
                 IndicarCabezal(); //Actualizar lo que se está leyendo 
-                lblLeyendo.Text=Leer().ToString();
+                lblLeyendo.Text = Leer().ToString();
 
 
                 if (Cinta[Cabezal] == simboloAEncontrar) //Verificamos si el simbolo encontrado en el cabezal es el que buscamos
@@ -180,14 +180,14 @@ namespace SimuladorMaquinaTuring
                                        // a otro tenga una espera de medio segundo (es unicamente estetico, lo podemos quitar si da algun problema)
 
                 //movemos cabezal a la otra poscicion 
-                if(Cabezal < Cinta.Count - 1)
+                if (Cabezal < Cinta.Count - 1)
                 {
                     Cabezal++;
                 }
 
                 else //esto es unicamente por si no se encuentra se sale directamente del ciclo 
                 {
-                   
+
                     break;
                 }
             }
@@ -201,6 +201,102 @@ namespace SimuladorMaquinaTuring
             grbMover.Enabled = true;
 
 
+        }
+
+
+        private async void btnBuscarYRemplazar_Click(object sender, EventArgs e)
+        {
+
+
+            string strBuscar = cboBuscar.Text;
+            string strReemplazar = cboRemplazar.Text;
+            string strOcurrencia = txtOcurrencia.Text;
+
+            if (string.IsNullOrEmpty(strBuscar) || string.IsNullOrEmpty(strReemplazar))
+            {
+                MessageBox.Show("Debes llenar los campos de 'Buscar' y 'Reemplazar por'.");
+                return;
+            }
+
+            // Validar que la ocurrencia sea un número válido. 
+            // Si lo dejan vacío, asumimos que buscan la 1ra ocurrencia.
+            int ocurrenciaObjetivo = 1;
+            if (!string.IsNullOrEmpty(strOcurrencia))
+            {
+                if (!int.TryParse(strOcurrencia, out ocurrenciaObjetivo) || ocurrenciaObjetivo < 1)
+                {
+                    MessageBox.Show("La ocurrencia debe ser un número mayor a 0.");
+                    return;
+                }
+            }
+
+            char charBuscar = strBuscar[0];
+            char charReemplazar = strReemplazar[0];
+
+            char[] Alfabeto = { 'x', 'y', 'z', 'B' };
+            if (!Alfabeto.Contains(charReemplazar))
+            {
+                MessageBox.Show("El carácter de reemplazo no es válido en el alfabeto.");
+                return;
+            }
+
+            grbBusqueda.Enabled = false;
+
+            int contadorEncontrados = 0;
+            bool reemplazoRealizado = false;
+
+
+            while (Cabezal < Cinta.Count)
+            {
+                IndicarCabezal();
+                lblLeyendo.Text = Leer().ToString();
+
+                await Task.Delay(500);
+
+                if (Cinta[Cabezal] == charBuscar)
+                {
+                    contadorEncontrados++;
+
+                    if (contadorEncontrados == ocurrenciaObjetivo)
+                    {
+
+                        // 1. Modificar la lista de datos 
+                        Cinta[Cabezal] = charReemplazar;
+
+                        // 2. Modificar la vista
+                        dgvCinta.Rows[0].Cells[Cabezal].Value = charReemplazar;
+
+                        // 3. Actualizar etiqueta de lectura
+                        lblLeyendo.Text = charReemplazar.ToString();
+
+                        // Efecto visual de éxito 
+                        dgvCinta.Rows[0].Cells[Cabezal].Style.BackColor = Color.LightGreen;
+                        await Task.Delay(300);
+                        IndicarCabezal();
+
+                        MessageBox.Show($"Se reemplazó '{charBuscar}' por '{charReemplazar}' exitosamente.");
+                        reemplazoRealizado = true;
+                        break;
+                    }
+                }
+
+
+                if (Cabezal < Cinta.Count - 1)
+                {
+                    Cabezal++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            if (!reemplazoRealizado)
+            {
+                MessageBox.Show($"No se encontró la ocurrencia #{ocurrenciaObjetivo} del símbolo '{charBuscar}'.");
+            }
+
+            grbBusqueda.Enabled = true;
         }
     }
 }

@@ -53,11 +53,11 @@
             this.grbBusquedaEscritura = new System.Windows.Forms.GroupBox();
             this.txtOcurrencia = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.button5 = new System.Windows.Forms.Button();
+            this.btnBuscarYRemplazar = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.cboRemplazar = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.cboBuscar = new System.Windows.Forms.ComboBox();
             this.grbCaptura.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCinta)).BeginInit();
             this.grbMover.SuspendLayout();
@@ -321,11 +321,11 @@
             // 
             this.grbBusquedaEscritura.Controls.Add(this.txtOcurrencia);
             this.grbBusquedaEscritura.Controls.Add(this.label8);
-            this.grbBusquedaEscritura.Controls.Add(this.button5);
+            this.grbBusquedaEscritura.Controls.Add(this.btnBuscarYRemplazar);
             this.grbBusquedaEscritura.Controls.Add(this.label7);
-            this.grbBusquedaEscritura.Controls.Add(this.comboBox4);
+            this.grbBusquedaEscritura.Controls.Add(this.cboRemplazar);
             this.grbBusquedaEscritura.Controls.Add(this.label6);
-            this.grbBusquedaEscritura.Controls.Add(this.comboBox3);
+            this.grbBusquedaEscritura.Controls.Add(this.cboBuscar);
             this.grbBusquedaEscritura.Enabled = false;
             this.grbBusquedaEscritura.Location = new System.Drawing.Point(23, 329);
             this.grbBusquedaEscritura.Name = "grbBusquedaEscritura";
@@ -350,14 +350,15 @@
             this.label8.TabIndex = 10;
             this.label8.Text = "Ocurrencia : ";
             // 
-            // button5
+            // btnBuscarYRemplazar
             // 
-            this.button5.Location = new System.Drawing.Point(66, 163);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(105, 33);
-            this.button5.TabIndex = 6;
-            this.button5.Text = "Buscar";
-            this.button5.UseVisualStyleBackColor = true;
+            this.btnBuscarYRemplazar.Location = new System.Drawing.Point(66, 163);
+            this.btnBuscarYRemplazar.Name = "btnBuscarYRemplazar";
+            this.btnBuscarYRemplazar.Size = new System.Drawing.Size(105, 33);
+            this.btnBuscarYRemplazar.TabIndex = 6;
+            this.btnBuscarYRemplazar.Text = "Buscar";
+            this.btnBuscarYRemplazar.UseVisualStyleBackColor = true;
+            this.btnBuscarYRemplazar.Click += new System.EventHandler(this.btnBuscarYRemplazar_Click);
             // 
             // label7
             // 
@@ -368,19 +369,19 @@
             this.label7.TabIndex = 8;
             this.label7.Text = "Remplazar por :";
             // 
-            // comboBox4
+            // cboRemplazar
             // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Items.AddRange(new object[] {
+            this.cboRemplazar.FormattingEnabled = true;
+            this.cboRemplazar.Items.AddRange(new object[] {
             "x",
             "y",
             "z",
             "B"});
-            this.comboBox4.Location = new System.Drawing.Point(115, 70);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(71, 24);
-            this.comboBox4.TabIndex = 9;
-            this.comboBox4.SelectedIndexChanged += new System.EventHandler(this.comboBox4_SelectedIndexChanged);
+            this.cboRemplazar.Location = new System.Drawing.Point(115, 70);
+            this.cboRemplazar.Name = "cboRemplazar";
+            this.cboRemplazar.Size = new System.Drawing.Size(71, 24);
+            this.cboRemplazar.TabIndex = 9;
+            this.cboRemplazar.SelectedIndexChanged += new System.EventHandler(this.comboBox4_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -391,18 +392,18 @@
             this.label6.TabIndex = 6;
             this.label6.Text = "Busacar : ";
             // 
-            // comboBox3
+            // cboBuscar
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
+            this.cboBuscar.FormattingEnabled = true;
+            this.cboBuscar.Items.AddRange(new object[] {
             "x",
             "y",
             "z",
             "B"});
-            this.comboBox3.Location = new System.Drawing.Point(88, 29);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(83, 24);
-            this.comboBox3.TabIndex = 7;
+            this.cboBuscar.Location = new System.Drawing.Point(88, 29);
+            this.cboBuscar.Name = "cboBuscar";
+            this.cboBuscar.Size = new System.Drawing.Size(83, 24);
+            this.cboBuscar.TabIndex = 7;
             // 
             // x
             // 
@@ -460,10 +461,10 @@
         private System.Windows.Forms.ComboBox cboLetraBusqueda;
         private System.Windows.Forms.GroupBox grbBusquedaEscritura;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox cboBuscar;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox comboBox4;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.ComboBox cboRemplazar;
+        private System.Windows.Forms.Button btnBuscarYRemplazar;
         private System.Windows.Forms.TextBox txtOcurrencia;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnEscribirN;
