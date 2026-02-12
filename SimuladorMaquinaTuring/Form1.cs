@@ -137,5 +137,70 @@ namespace SimuladorMaquinaTuring
         {
             MoverCabezalDerecha();
         }
+
+    
+
+        private void dgvCinta_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        //usar el async hace que se vaya viendo el recorrido del cabezal de poco en poco (es mas estetico que nada)
+        private async void btnBusqueda_Click(object sender, EventArgs e)
+        {
+            string buscar = cboLetraBusqueda.Text; //gardamos el simbolo que vayamos a buscar 
+
+            if (string.IsNullOrEmpty(buscar)) //Validacion de que la variable no esté vacía
+            {
+                MessageBox.Show("Favor de seleccionar o ingresar un simbolo para buscar");
+                return;
+            }
+            char simboloAEncontrar = buscar[0];
+            bool encontrado = false;
+            
+            grbMover.Enabled = false;  // Bloqueamos controles para que no muevan nada mientras busca
+
+            while (Cabezal < Cinta.Count) //Ciclo de busqueda hacía la derecha
+            {
+                IndicarCabezal(); //Actualizar lo que se está leyendo 
+                lblLeyendo.Text=Leer().ToString();
+
+
+                if (Cinta[Cabezal] == simboloAEncontrar) //Verificamos si el simbolo encontrado en el cabezal es el que buscamos
+                {
+                    // En caso de que lo sea cambiamos la variable encontrado a true 
+                    encontrado = true;
+                    dgvCinta.Rows[0].Cells[Cabezal].Style.BackColor = Color.Green; // ponemos el fondo en color verde para saber que lo hemos encontrado
+                    await Task.Delay(1000); //usamos el async para que se vea el verde 1 segundo
+                    IndicarCabezal(); // Regresar al color rojo del encavezado
+                    break; // Salimos del ciclo
+                }
+
+                await Task.Delay(500); //Aqui ya usamos lo del async que pusimos al inicio del evento, esto unicamente hace que de un salto
+                                       // a otro tenga una espera de medio segundo (es unicamente estetico, lo podemos quitar si da algun problema)
+
+                //movemos cabezal a la otra poscicion 
+                if(Cabezal < Cinta.Count - 1)
+                {
+                    Cabezal++;
+                }
+
+                else //esto es unicamente por si no se encuentra se sale directamente del ciclo 
+                {
+                   
+                    break;
+                }
+            }
+
+            if (!encontrado)
+            {
+                MessageBox.Show($"El símbolo '{simboloAEncontrar}' no se encontró en el resto de la cinta.");
+            }
+
+            // Activamos otra vez los controles
+            grbMover.Enabled = true;
+
+
+        }
     }
 }
