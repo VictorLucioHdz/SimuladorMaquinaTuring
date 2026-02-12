@@ -72,12 +72,13 @@ namespace SimuladorMaquinaTuring
         }
         private void CargaCinta()
         {
+            //Este jale es pa limpiar el data 
             dgvCinta.Columns.Clear();
             dgvCinta.Rows.Clear();
             dgvCinta.ColumnCount = 0;
             dgvCinta.RowCount = 1;
 
-
+            //y aqui recorre la lista hasta el final y le da un tamaño pa q no sea tan grande los cuadritos 
             for (int i = 0; i < Cinta.Count; i++)
             {
                 dgvCinta.Columns.Add("c" + i, "");
@@ -88,6 +89,7 @@ namespace SimuladorMaquinaTuring
                     DataGridViewContentAlignment.MiddleCenter;
             }
         }
+        //Pone en rojo el cabezal
         private void IndicarCabezal()
         {
             if (Cinta.Count == 0) 
@@ -125,7 +127,7 @@ namespace SimuladorMaquinaTuring
             return Cinta[Cabezal];
             
         }
-
+        
         private void btnCabezalIzquirda_Click(object sender, EventArgs e)
         {
             MoverCabezalIzquierda();
