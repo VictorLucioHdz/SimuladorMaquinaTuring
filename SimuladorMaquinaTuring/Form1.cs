@@ -339,12 +339,12 @@ namespace SimuladorMaquinaTuring
             int Contador = 1;
 
             string Direccion = MT.Direccion.ToString();
-            MessageBox.Show(MT.Nombre + MT.Simbolo.ToString() + MT.Direccion.ToString());
+            //MessageBox.Show(MT.Nombre + MT.Simbolo.ToString() + MT.Direccion.ToString());
             bool encontrado = false;
 
 
 
-            while (Cabezal >= 0 &&Cabezal < Cinta.Count) //Ciclo de busqueda hacía la derecha
+            while (Cabezal >= 0 &&Cabezal < Cinta.Count) 
             {
                 IndicarCabezal(); //Actualizar lo que se está leyendo 
                 lblLeyendo.Text = Leer().ToString();
@@ -362,7 +362,7 @@ namespace SimuladorMaquinaTuring
                         break; // Salimos del ciclo
                     }
                 }
-                await Task.Delay(500); //Aqui ya usamos lo del async que pusimos al inicio del evento, esto unicamente hace que de un salto
+                await Task.Delay(50); //Aqui ya usamos lo del async que pusimos al inicio del evento, esto unicamente hace que de un salto
                                        // a otro tenga una espera de medio segundo (es unicamente estetico, lo podemos quitar si da algun problema)
                 Contador++;
                 //preguntamos la direccion
@@ -417,8 +417,10 @@ namespace SimuladorMaquinaTuring
             MTnumero++;
             MT.Nombre = "MT" + MTnumero.ToString();
             MT.Simbolo = '#';
-            Cinta.RemoveAt(Cabezal);
-            Cinta.Insert(Cabezal, '#');
+            MT.Operacion = 4; //Operacion 4 es para marcar
+            Operaciones.Add(MT);
+            listaOpe.Items.Add("#");
+            
             
         }
         private void Escribir(MaquinaTuring MT)
@@ -437,13 +439,31 @@ namespace SimuladorMaquinaTuring
                 switch (MT.Operacion)
                 {
                     case 1: //Busqueda
+                        MessageBox.Show("Estado :" + MT.Nombre + "\nBuscar : " +MT.Simbolo + " ala " + MT.Direccion);
                         Buscar(MT);
                         break;
                     case 2: //Escritura
+                        MessageBox.Show("Estado :" + MT.Nombre + "\nEscribir el simbolo " + MT.Simbolo);
                         Escribir(MT);
                         break;
                     case 3: //Mover
-                        // Llamar al método de marcar con el símbolo especificado en MT.Simbolo
+                        
+                        if (MT.Direccion == 'D')
+                        {
+                            MessageBox.Show("Estado :" + MT.Nombre + "\nMover  a la Derecha" );
+                            MoverCabezalDerecha();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Estado :" + MT.Nombre + "\nMover  a la Izquierda");
+                            MoverCabezalIzquierda();
+                        }
+                        break;
+                    case 4:
+                        MessageBox.Show("Estado :" + MT.Nombre + "\nMarcar ");
+                        Cinta.RemoveAt(Cabezal);
+                        Cinta.Insert(Cabezal, '#');
+                        
                         break;
                     default:
                         MessageBox.Show($"Operación desconocida para {MT.Nombre}");
@@ -470,24 +490,30 @@ namespace SimuladorMaquinaTuring
             if (radMoverD.Checked)
             {
                 MT.Direccion = 'D';
+                listaOpe.Items.Add("D");
+                Operaciones.Add(MT);
+                
             }
             if (radMoverIzq.Checked)
             {
                 MT.Direccion = 'I';
+                listaOpe.Items.Add("I");
+                Operaciones.Add(MT);
             }
+            
 
         }
 
         private void radMoverD_CheckedChanged(object sender, EventArgs e)
         {
             radMoverIzq.Checked = false;
-            radMoverD.Checked = true;
+           
         }
 
         private void radMoverIzq_CheckedChanged(object sender, EventArgs e)
         {
             radMoverD.Checked = false;
-            radMoverIzq.Checked = true;
+            
         }
     }
 }

@@ -505,7 +505,6 @@
             this.groupBox2.Controls.Add(this.radMoverIzq);
             this.groupBox2.Controls.Add(this.radMoverD);
             this.groupBox2.Controls.Add(this.btnMover);
-            this.groupBox2.Enabled = false;
             this.groupBox2.Location = new System.Drawing.Point(23, 332);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(176, 138);
