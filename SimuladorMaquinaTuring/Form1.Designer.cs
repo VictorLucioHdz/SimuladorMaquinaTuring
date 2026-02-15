@@ -38,18 +38,18 @@
             this.btnCabezalDerecha = new System.Windows.Forms.Button();
             this.btnCabezalIzquirda = new System.Windows.Forms.Button();
             this.grbEscribir = new System.Windows.Forms.GroupBox();
-            this.btnEscribirN = new System.Windows.Forms.Button();
-            this.brnEscribirDer = new System.Windows.Forms.Button();
-            this.btnEscribirIzq = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.btnEscribir = new System.Windows.Forms.Button();
+            this.cmbEscribir = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.grbLectura = new System.Windows.Forms.GroupBox();
             this.lblLeyendo = new System.Windows.Forms.Label();
             this.grbBusqueda = new System.Windows.Forms.GroupBox();
+            this.radIzq = new System.Windows.Forms.RadioButton();
+            this.radDerecha = new System.Windows.Forms.RadioButton();
             this.btnBusqueda = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.cboLetraBusqueda = new System.Windows.Forms.ComboBox();
+            this.cmbBusqueda = new System.Windows.Forms.ComboBox();
             this.grbBusquedaEscritura = new System.Windows.Forms.GroupBox();
             this.txtOcurrencia = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -58,6 +58,12 @@
             this.cboRemplazar = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.cboBuscar = new System.Windows.Forms.ComboBox();
+            this.listaOpe = new System.Windows.Forms.ListBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.btnMarcar = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.btnEjecutar = new System.Windows.Forms.Button();
             this.grbCaptura.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCinta)).BeginInit();
             this.grbMover.SuspendLayout();
@@ -65,6 +71,7 @@
             this.grbLectura.SuspendLayout();
             this.grbBusqueda.SuspendLayout();
             this.grbBusquedaEscritura.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtCadena
@@ -111,7 +118,7 @@
             this.grbCaptura.Controls.Add(this.label2);
             this.grbCaptura.Location = new System.Drawing.Point(23, 25);
             this.grbCaptura.Name = "grbCaptura";
-            this.grbCaptura.Size = new System.Drawing.Size(201, 136);
+            this.grbCaptura.Size = new System.Drawing.Size(213, 136);
             this.grbCaptura.TabIndex = 4;
             this.grbCaptura.TabStop = false;
             this.grbCaptura.Text = "Cadena";
@@ -122,7 +129,7 @@
             this.dgvCinta.AllowUserToDeleteRows = false;
             this.dgvCinta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCinta.ColumnHeadersVisible = false;
-            this.dgvCinta.Location = new System.Drawing.Point(163, 205);
+            this.dgvCinta.Location = new System.Drawing.Point(470, 176);
             this.dgvCinta.Name = "dgvCinta";
             this.dgvCinta.ReadOnly = true;
             this.dgvCinta.RowHeadersVisible = false;
@@ -137,7 +144,7 @@
             this.grbMover.Controls.Add(this.btnCabezalDerecha);
             this.grbMover.Controls.Add(this.btnCabezalIzquirda);
             this.grbMover.Enabled = false;
-            this.grbMover.Location = new System.Drawing.Point(230, 25);
+            this.grbMover.Location = new System.Drawing.Point(255, 25);
             this.grbMover.Name = "grbMover";
             this.grbMover.Size = new System.Drawing.Size(176, 95);
             this.grbMover.TabIndex = 6;
@@ -172,74 +179,48 @@
             // 
             // grbEscribir
             // 
-            this.grbEscribir.Controls.Add(this.btnEscribirN);
-            this.grbEscribir.Controls.Add(this.brnEscribirDer);
-            this.grbEscribir.Controls.Add(this.btnEscribirIzq);
-            this.grbEscribir.Controls.Add(this.comboBox1);
+            this.grbEscribir.Controls.Add(this.btnEscribir);
+            this.grbEscribir.Controls.Add(this.cmbEscribir);
             this.grbEscribir.Controls.Add(this.label3);
             this.grbEscribir.Enabled = false;
-            this.grbEscribir.Location = new System.Drawing.Point(412, 25);
+            this.grbEscribir.Location = new System.Drawing.Point(30, 176);
             this.grbEscribir.Name = "grbEscribir";
             this.grbEscribir.Size = new System.Drawing.Size(206, 136);
             this.grbEscribir.TabIndex = 7;
             this.grbEscribir.TabStop = false;
             this.grbEscribir.Text = "Escritura";
             // 
-            // btnEscribirN
+            // btnEscribir
             // 
-            this.btnEscribirN.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEscribirN.Location = new System.Drawing.Point(81, 68);
-            this.btnEscribirN.Name = "btnEscribirN";
-            this.btnEscribirN.Size = new System.Drawing.Size(50, 38);
-            this.btnEscribirN.TabIndex = 4;
-            this.btnEscribirN.Text = "N";
-            this.btnEscribirN.UseVisualStyleBackColor = true;
+            this.btnEscribir.Location = new System.Drawing.Point(46, 68);
+            this.btnEscribir.Name = "btnEscribir";
+            this.btnEscribir.Size = new System.Drawing.Size(105, 33);
+            this.btnEscribir.TabIndex = 12;
+            this.btnEscribir.Text = "Agregar";
+            this.btnEscribir.UseVisualStyleBackColor = true;
+            this.btnEscribir.Click += new System.EventHandler(this.btnEscribir_Click);
             // 
-            // brnEscribirDer
+            // cmbEscribir
             // 
-            this.brnEscribirDer.AutoSize = true;
-            this.brnEscribirDer.Font = new System.Drawing.Font("Impact", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.brnEscribirDer.Location = new System.Drawing.Point(137, 68);
-            this.brnEscribirDer.Name = "brnEscribirDer";
-            this.brnEscribirDer.Size = new System.Drawing.Size(54, 38);
-            this.brnEscribirDer.TabIndex = 3;
-            this.brnEscribirDer.Text = "→";
-            this.brnEscribirDer.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.brnEscribirDer.UseVisualStyleBackColor = true;
-            // 
-            // btnEscribirIzq
-            // 
-            this.btnEscribirIzq.AutoSize = true;
-            this.btnEscribirIzq.Font = new System.Drawing.Font("Impact", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEscribirIzq.Location = new System.Drawing.Point(19, 68);
-            this.btnEscribirIzq.Name = "btnEscribirIzq";
-            this.btnEscribirIzq.Size = new System.Drawing.Size(52, 38);
-            this.btnEscribirIzq.TabIndex = 2;
-            this.btnEscribirIzq.Text = "←";
-            this.btnEscribirIzq.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnEscribirIzq.UseVisualStyleBackColor = true;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cmbEscribir.FormattingEnabled = true;
+            this.cmbEscribir.Items.AddRange(new object[] {
             "x",
             "y",
             "z",
             "B"});
-            this.comboBox1.Location = new System.Drawing.Point(58, 27);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 24);
-            this.comboBox1.TabIndex = 1;
+            this.cmbEscribir.Location = new System.Drawing.Point(78, 25);
+            this.cmbEscribir.Name = "cmbEscribir";
+            this.cmbEscribir.Size = new System.Drawing.Size(121, 24);
+            this.cmbEscribir.TabIndex = 1;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(6, 29);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(46, 16);
+            this.label3.Size = new System.Drawing.Size(66, 16);
             this.label3.TabIndex = 0;
-            this.label3.Text = "Letra : ";
+            this.label3.Text = "Simbolo : ";
             // 
             // label4
             // 
@@ -255,9 +236,9 @@
             this.grbLectura.Controls.Add(this.lblLeyendo);
             this.grbLectura.Controls.Add(this.label4);
             this.grbLectura.Enabled = false;
-            this.grbLectura.Location = new System.Drawing.Point(624, 25);
+            this.grbLectura.Location = new System.Drawing.Point(737, 25);
             this.grbLectura.Name = "grbLectura";
-            this.grbLectura.Size = new System.Drawing.Size(130, 69);
+            this.grbLectura.Size = new System.Drawing.Size(176, 69);
             this.grbLectura.TabIndex = 9;
             this.grbLectura.TabStop = false;
             this.grbLectura.Text = "Lectura";
@@ -274,48 +255,75 @@
             // 
             // grbBusqueda
             // 
+            this.grbBusqueda.Controls.Add(this.radIzq);
+            this.grbBusqueda.Controls.Add(this.radDerecha);
             this.grbBusqueda.Controls.Add(this.btnBusqueda);
             this.grbBusqueda.Controls.Add(this.label5);
-            this.grbBusqueda.Controls.Add(this.cboLetraBusqueda);
+            this.grbBusqueda.Controls.Add(this.cmbBusqueda);
             this.grbBusqueda.Enabled = false;
-            this.grbBusqueda.Location = new System.Drawing.Point(770, 25);
+            this.grbBusqueda.Location = new System.Drawing.Point(255, 244);
             this.grbBusqueda.Name = "grbBusqueda";
-            this.grbBusqueda.Size = new System.Drawing.Size(200, 100);
+            this.grbBusqueda.Size = new System.Drawing.Size(176, 179);
             this.grbBusqueda.TabIndex = 10;
             this.grbBusqueda.TabStop = false;
             this.grbBusqueda.Text = "Busqueda";
             // 
+            // radIzq
+            // 
+            this.radIzq.AutoSize = true;
+            this.radIzq.Location = new System.Drawing.Point(18, 73);
+            this.radIzq.Name = "radIzq";
+            this.radIzq.Size = new System.Drawing.Size(83, 20);
+            this.radIzq.TabIndex = 7;
+            this.radIzq.Text = "Izquierda";
+            this.radIzq.UseVisualStyleBackColor = true;
+            this.radIzq.CheckedChanged += new System.EventHandler(this.radIzq_CheckedChanged);
+            // 
+            // radDerecha
+            // 
+            this.radDerecha.AutoSize = true;
+            this.radDerecha.Checked = true;
+            this.radDerecha.Location = new System.Drawing.Point(18, 52);
+            this.radDerecha.Name = "radDerecha";
+            this.radDerecha.Size = new System.Drawing.Size(80, 20);
+            this.radDerecha.TabIndex = 6;
+            this.radDerecha.TabStop = true;
+            this.radDerecha.Text = "Derecha";
+            this.radDerecha.UseVisualStyleBackColor = true;
+            this.radDerecha.CheckedChanged += new System.EventHandler(this.radDerecha_CheckedChanged);
+            // 
             // btnBusqueda
             // 
-            this.btnBusqueda.Location = new System.Drawing.Point(49, 55);
+            this.btnBusqueda.Location = new System.Drawing.Point(41, 140);
             this.btnBusqueda.Name = "btnBusqueda";
             this.btnBusqueda.Size = new System.Drawing.Size(105, 33);
             this.btnBusqueda.TabIndex = 5;
-            this.btnBusqueda.Text = "Buscar";
+            this.btnBusqueda.Text = "Agregar";
             this.btnBusqueda.UseVisualStyleBackColor = true;
             this.btnBusqueda.Click += new System.EventHandler(this.btnBusqueda_Click);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 29);
+            this.label5.Location = new System.Drawing.Point(6, 25);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(46, 16);
+            this.label5.Size = new System.Drawing.Size(66, 16);
             this.label5.TabIndex = 4;
-            this.label5.Text = "Letra : ";
+            this.label5.Text = "Simbolo : ";
             // 
-            // cboLetraBusqueda
+            // cmbBusqueda
             // 
-            this.cboLetraBusqueda.FormattingEnabled = true;
-            this.cboLetraBusqueda.Items.AddRange(new object[] {
+            this.cmbBusqueda.FormattingEnabled = true;
+            this.cmbBusqueda.Items.AddRange(new object[] {
             "x",
             "y",
             "z",
-            "B"});
-            this.cboLetraBusqueda.Location = new System.Drawing.Point(58, 25);
-            this.cboLetraBusqueda.Name = "cboLetraBusqueda";
-            this.cboLetraBusqueda.Size = new System.Drawing.Size(83, 24);
-            this.cboLetraBusqueda.TabIndex = 4;
+            "B",
+            "#"});
+            this.cmbBusqueda.Location = new System.Drawing.Point(90, 22);
+            this.cmbBusqueda.Name = "cmbBusqueda";
+            this.cmbBusqueda.Size = new System.Drawing.Size(56, 24);
+            this.cmbBusqueda.TabIndex = 4;
             // 
             // grbBusquedaEscritura
             // 
@@ -327,12 +335,12 @@
             this.grbBusquedaEscritura.Controls.Add(this.label6);
             this.grbBusquedaEscritura.Controls.Add(this.cboBuscar);
             this.grbBusquedaEscritura.Enabled = false;
-            this.grbBusquedaEscritura.Location = new System.Drawing.Point(23, 329);
+            this.grbBusquedaEscritura.Location = new System.Drawing.Point(23, 340);
             this.grbBusquedaEscritura.Name = "grbBusquedaEscritura";
             this.grbBusquedaEscritura.Size = new System.Drawing.Size(213, 202);
             this.grbBusquedaEscritura.TabIndex = 11;
             this.grbBusquedaEscritura.TabStop = false;
-            this.grbBusquedaEscritura.Text = "Busqueda y Remplazar ";
+            this.grbBusquedaEscritura.Text = "cREO QUE  NO NOS SIRVE";
             // 
             // txtOcurrencia
             // 
@@ -405,11 +413,74 @@
             this.cboBuscar.Size = new System.Drawing.Size(83, 24);
             this.cboBuscar.TabIndex = 7;
             // 
+            // listaOpe
+            // 
+            this.listaOpe.FormattingEnabled = true;
+            this.listaOpe.ItemHeight = 16;
+            this.listaOpe.Location = new System.Drawing.Point(495, 25);
+            this.listaOpe.Name = "listaOpe";
+            this.listaOpe.Size = new System.Drawing.Size(211, 132);
+            this.listaOpe.TabIndex = 12;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.btnMarcar);
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Location = new System.Drawing.Point(255, 130);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(176, 95);
+            this.groupBox1.TabIndex = 13;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Marcar";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(78, 22);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(23, 25);
+            this.label10.TabIndex = 10;
+            this.label10.Text = "#";
+            // 
+            // btnMarcar
+            // 
+            this.btnMarcar.Location = new System.Drawing.Point(41, 50);
+            this.btnMarcar.Name = "btnMarcar";
+            this.btnMarcar.Size = new System.Drawing.Size(105, 33);
+            this.btnMarcar.TabIndex = 12;
+            this.btnMarcar.Text = "Agregar";
+            this.btnMarcar.UseVisualStyleBackColor = true;
+            this.btnMarcar.Click += new System.EventHandler(this.btnMarcar_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(6, 29);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(66, 16);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "Simbolo : ";
+            // 
+            // btnEjecutar
+            // 
+            this.btnEjecutar.Location = new System.Drawing.Point(269, 441);
+            this.btnEjecutar.Name = "btnEjecutar";
+            this.btnEjecutar.Size = new System.Drawing.Size(150, 51);
+            this.btnEjecutar.TabIndex = 14;
+            this.btnEjecutar.Text = "Ejecutar";
+            this.btnEjecutar.UseVisualStyleBackColor = true;
+            this.btnEjecutar.Click += new System.EventHandler(this.btnEjecutar_Click);
+            // 
             // x
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1048, 567);
+            this.ClientSize = new System.Drawing.Size(1284, 567);
+            this.Controls.Add(this.btnEjecutar);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.listaOpe);
             this.Controls.Add(this.grbBusquedaEscritura);
             this.Controls.Add(this.grbBusqueda);
             this.Controls.Add(this.grbLectura);
@@ -419,6 +490,7 @@
             this.Controls.Add(this.grbCaptura);
             this.Name = "x";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.x_Load);
             this.grbCaptura.ResumeLayout(false);
             this.grbCaptura.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCinta)).EndInit();
@@ -432,6 +504,8 @@
             this.grbBusqueda.PerformLayout();
             this.grbBusquedaEscritura.ResumeLayout(false);
             this.grbBusquedaEscritura.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -446,19 +520,17 @@
         private System.Windows.Forms.DataGridView dgvCinta;
         private System.Windows.Forms.GroupBox grbMover;
         private System.Windows.Forms.GroupBox grbEscribir;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbEscribir;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button btnEscribirIzq;
         private System.Windows.Forms.Button btnCabezalDerecha;
         private System.Windows.Forms.Button btnCabezalIzquirda;
-        private System.Windows.Forms.Button brnEscribirDer;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox grbLectura;
         private System.Windows.Forms.Label lblLeyendo;
         private System.Windows.Forms.GroupBox grbBusqueda;
         private System.Windows.Forms.Button btnBusqueda;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox cboLetraBusqueda;
+        private System.Windows.Forms.ComboBox cmbBusqueda;
         private System.Windows.Forms.GroupBox grbBusquedaEscritura;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cboBuscar;
@@ -467,7 +539,15 @@
         private System.Windows.Forms.Button btnBuscarYRemplazar;
         private System.Windows.Forms.TextBox txtOcurrencia;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button btnEscribirN;
+        private System.Windows.Forms.Button btnEscribir;
+        private System.Windows.Forms.RadioButton radIzq;
+        private System.Windows.Forms.RadioButton radDerecha;
+        private System.Windows.Forms.ListBox listaOpe;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button btnMarcar;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button btnEjecutar;
     }
 }
 

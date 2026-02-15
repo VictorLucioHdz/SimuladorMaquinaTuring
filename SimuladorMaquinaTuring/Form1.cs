@@ -10,6 +10,17 @@ using System.Windows.Forms;
 
 namespace SimuladorMaquinaTuring
 {
+    //E PAAA WACHA MI IDEA VAMOS A CREAR UNA LISTA EN LA CUAL VAMOS IR METIENDO OBJETOS DE TIPO MAQUINA TURING LA CUAL 
+    //VA TENER PROPIEDADES QUE NECESITEMOS EN LOS DIFERENTES PROCESOS Y ASI CREAR LA LISTA DESPUES CONFORME EL BOTON DE 
+    //AGREGAR DE CADA OPERACION VA TENER DEFINIDO UN NUMETO DE TIPO DE OPERACION Y UN NOMBRE PARA LLEVAR LA CUENTA DE CUANTAS MAQUINAS VAN
+    //AL FINAL IRA UN BOTON QUE DIJA EJECUTAR EL CUAL VA A RECORRER LA LISTA DE OPERACIONES Y LA ESTRUCTURA QUE TENGO PENSADO HACER ES 
+    //UN SWITCH CASE EN EL CUAL DEPENDIENDO DEL NUMERO DE OPERACION QUE TENGA ES LO QUE SE VA HACER PARA NO MESCLAR TANTO EN EL SWITCH 
+    //VAMOS A LLAMAR SOLO LOS METODOS DENTRO DEL SWITCH 
+    //POR EJEMPLO EL METODO DE BUSQUEDA QUE ESTA AL FINAL DE ESTE CODIGO, EN EL SWITCH SOLO SE LLAMARIA A ESE METODO Y LE PASARIAMOS LA MAQUINA TURING QUE CORRESPONDA Y ASI CON CADA PROCESO
+    // EL NUMERO DE LAS OPERACIONES ES 1 PA BUSQUEDA, 2 PA ESCRIBIR , 
+    //YA JALA 2 3, SI PONES LA MAQUINA DE BUSCAR EN VARIAS DIRECCIONES JALA LA MAARCA TAMBIEN Y LA DE ESCRIBIR PERO HYA UN PROBLEMA 
+    //AL MOMENTO DE EJECUTAR Y BUSCAS UNA Z y LA CELDA EN LA QUE ESTA ES Z SE DETIENE HAY Q VALIDAR SI ES EMPEZANDO O APARTIR DE 
+    //LA PRIMERA CELDA OTRA LAS OCURRENCIAS AUN NOSE COMO IMPLEMENTARLO
     public partial class x : Form
     {
         public x()
@@ -21,7 +32,9 @@ namespace SimuladorMaquinaTuring
         }
         //DECLARACIONES PUBLICAS PARA TODA LA CLASE FORM
         List<char> Cinta = new List<char>();
+        List<MaquinaTuring> Operaciones = new List<MaquinaTuring>();
         int Cabezal = 1;// siempre en el 1 por que el 0 va ser blanco
+        int MTnumero =0; //variable para saber que maquina turing se esta usando (busqueda, escritura, etc)
 
 
         private void label1_Click(object sender, EventArgs e)
@@ -146,63 +159,63 @@ namespace SimuladorMaquinaTuring
         }
 
         //usar el async hace que se vaya viendo el recorrido del cabezal de poco en poco (es mas estetico que nada)
-        private async void btnBusqueda_Click(object sender, EventArgs e)
+        private  void btnBusqueda_Click(object sender, EventArgs e)
         {
-            string buscar = cboLetraBusqueda.Text; //gardamos el simbolo que vayamos a buscar 
-
-            if (string.IsNullOrEmpty(buscar)) //Validacion de que la variable no esté vacía
+            if (string.IsNullOrEmpty(cmbBusqueda.Text))
+                
             {
-                MessageBox.Show("Favor de seleccionar o ingresar un simbolo para buscar");
+                MessageBox.Show("Selecciona un símbolo a buscar.");
                 return;
             }
-            char simboloAEncontrar = buscar[0];
-            bool encontrado = false;
-
-            grbMover.Enabled = false;  // Bloqueamos controles para que no muevan nada mientras busca
-
-            while (Cabezal < Cinta.Count) //Ciclo de busqueda hacía la derecha
+            if (radDerecha.Checked || radIzq.Checked )
             {
-                IndicarCabezal(); //Actualizar lo que se está leyendo 
-                lblLeyendo.Text = Leer().ToString();
-
-
-                if (Cinta[Cabezal] == simboloAEncontrar) //Verificamos si el simbolo encontrado en el cabezal es el que buscamos
+                MaquinaTuring MT = new MaquinaTuring();
+                MTnumero++;
+                MT.Simbolo = char.Parse(cmbBusqueda.Text);//Obtenemos el simbolo a buscar del combo box
+                MT.Nombre = "MT" + MTnumero.ToString(); //Le damos un nombre a la maquina turing (esto es opcional, pero puede servir para identificarla en caso de que queramos hacer varias maquinas turing)
+                MT.Operacion = 1; //Operacion 1 es para busqueda
+                if (radDerecha.Checked)
                 {
-                    // En caso de que lo sea cambiamos la variable encontrado a true 
-                    encontrado = true;
-                    dgvCinta.Rows[0].Cells[Cabezal].Style.BackColor = Color.Green; // ponemos el fondo en color verde para saber que lo hemos encontrado
-                    await Task.Delay(1000); //usamos el async para que se vea el verde 1 segundo
-                    IndicarCabezal(); // Regresar al color rojo del encavezado
-                    break; // Salimos del ciclo
+                    MT.Direccion = 'D';
+                    listaOpe.Items.Add('D' + MT.Simbolo.ToString());
+                    Operaciones.Add(MT);
                 }
-
-                await Task.Delay(500); //Aqui ya usamos lo del async que pusimos al inicio del evento, esto unicamente hace que de un salto
-                                       // a otro tenga una espera de medio segundo (es unicamente estetico, lo podemos quitar si da algun problema)
-
-                //movemos cabezal a la otra poscicion 
-                if (Cabezal < Cinta.Count - 1)
+                else if (radIzq.Checked)
                 {
-                    Cabezal++;
+                    MT.Direccion = 'I';
+                    listaOpe.Items.Add('I' + MT.Simbolo.ToString());
+                    Operaciones.Add(MT);
                 }
-
-                else //esto es unicamente por si no se encuentra se sale directamente del ciclo 
+                else
                 {
-
-                    break;
+                    MessageBox.Show("Selecciona una dirección para la búsqueda.");
+                    return;
                 }
             }
-
-            if (!encontrado)
+            else
             {
-                MessageBox.Show($"El símbolo '{simboloAEncontrar}' no se encontró en el resto de la cinta.");
+                MessageBox.Show("Selecciona una dirección para la búsqueda y el simbolo a buscar");
+                return;
             }
-
-            // Activamos otra vez los controles
-            grbMover.Enabled = true;
-
 
         }
+        private void btnEscribir_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(cmbBusqueda.Text))
 
+            {
+                MessageBox.Show("Selecciona un símbolo a buscar.");
+                return;
+            }
+            MaquinaTuring MT = new MaquinaTuring();
+            MTnumero++;
+            MT.Simbolo = char.Parse(cmbEscribir.Text);//Obtenemos el simbolo a escribir del combo box
+            MT.Nombre = "MT" + MTnumero.ToString(); //Le damos un nombre a la maquina turing
+            MT.Operacion = 2; //Operacion 2 es para escribir
+            Operaciones.Add(MT);
+            listaOpe.Items.Add( MT.Simbolo.ToString());
+
+        }
 
         private async void btnBuscarYRemplazar_Click(object sender, EventArgs e)
         {
@@ -262,17 +275,27 @@ namespace SimuladorMaquinaTuring
 
                         // 1. Modificar la lista de datos 
                         Cinta[Cabezal] = charReemplazar;
+                        if(Cabezal == Cinta.Count - 1)
+                        {
+                            Cinta.Add('B');
+                        }
+                            
+                        
+                        
 
                         // 2. Modificar la vista
-                        dgvCinta.Rows[0].Cells[Cabezal].Value = charReemplazar;
-
+                        // dgvCinta.Rows[0].Cells[Cabezal].Value = charReemplazar;
+                        
                         // 3. Actualizar etiqueta de lectura
                         lblLeyendo.Text = charReemplazar.ToString();
 
                         // Efecto visual de éxito 
                         dgvCinta.Rows[0].Cells[Cabezal].Style.BackColor = Color.LightGreen;
                         await Task.Delay(300);
+                        CargaCinta();
                         IndicarCabezal();
+                        
+
 
                         MessageBox.Show($"Se reemplazó '{charBuscar}' por '{charReemplazar}' exitosamente.");
                         reemplazoRealizado = true;
@@ -298,5 +321,132 @@ namespace SimuladorMaquinaTuring
 
             grbBusqueda.Enabled = true;
         }
+
+        private void x_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnEscribirN_Click(object sender, EventArgs e)
+        {
+           
+        }
+        private async void Buscar(MaquinaTuring MT)
+        {
+            
+            char simboloAEncontrar = MT.Simbolo;
+           
+            string Direccion = MT.Direccion.ToString();
+            MessageBox.Show(MT.Nombre + MT.Simbolo.ToString() + MT.Direccion.ToString());
+            bool encontrado = false;
+
+
+
+            while (Cabezal >= 0 &&Cabezal < Cinta.Count) //Ciclo de busqueda hacía la derecha
+            {
+                IndicarCabezal(); //Actualizar lo que se está leyendo 
+                lblLeyendo.Text = Leer().ToString();
+
+
+                if (Cinta[Cabezal] == simboloAEncontrar) //Verificamos si el simbolo encontrado en el cabezal es el que buscamos
+                {
+                    // En caso de que lo sea cambiamos la variable encontrado a true 
+                    encontrado = true;
+                    dgvCinta.Rows[0].Cells[Cabezal].Style.BackColor = Color.Green; // ponemos el fondo en color verde para saber que lo hemos encontrado
+                    await Task.Delay(1000); //usamos el async para que se vea el verde 1 segundo
+                    IndicarCabezal(); // Regresar al color rojo del encavezado
+                    break; // Salimos del ciclo
+                }
+
+                await Task.Delay(500); //Aqui ya usamos lo del async que pusimos al inicio del evento, esto unicamente hace que de un salto
+                                       // a otro tenga una espera de medio segundo (es unicamente estetico, lo podemos quitar si da algun problema)
+
+                //preguntamos la direccion
+                if (Direccion ==  "D")
+                {
+                    if (Cabezal < Cinta.Count) 
+                    {
+                        Cabezal++;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                else //esto es unicamente por si no se encuentra se sale directamente del ciclo 
+                {
+                    if (Cabezal > 0)
+                    {
+                        Cabezal--;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+
+            if (!encontrado)
+            {
+                MessageBox.Show($"El símbolo '{simboloAEncontrar}' no se encontró en el resto de la cinta.");
+            }
+
+
+            
+        }
+           
+        private void radIzq_CheckedChanged(object sender, EventArgs e)
+        {
+            radDerecha.Checked = false;
+        }
+
+        private void radDerecha_CheckedChanged(object sender, EventArgs e)
+        {
+            radIzq.Checked = false;
+        }
+
+        private void btnMarcar_Click(object sender, EventArgs e)
+        {
+            MaquinaTuring MT = new MaquinaTuring();
+            MTnumero++;
+            MT.Nombre = "MT" + MTnumero.ToString();
+            MT.Simbolo = '#';
+            Cinta.RemoveAt(Cabezal);
+            Cinta.Insert(Cabezal, '#');
+            
+        }
+        private void Escribir(MaquinaTuring MT)
+        {
+            char simboloAEscribir = MT.Simbolo;
+            Cinta.RemoveAt(Cabezal);
+            Cinta.Insert(Cabezal, simboloAEscribir);
+            CargaCinta();
+            IndicarCabezal();
+        }
+
+        private void btnEjecutar_Click(object sender, EventArgs e)
+        {
+            foreach(MaquinaTuring MT in Operaciones)
+            {
+                switch (MT.Operacion)
+                {
+                    case 1: //Busqueda
+                        Buscar(MT);
+                        break;
+                    case 2: //Escritura
+                        Escribir(MT);
+                        break;
+                    case 3: //Marcar
+                        // Llamar al método de marcar con el símbolo especificado en MT.Simbolo
+                        break;
+                    default:
+                        MessageBox.Show($"Operación desconocida para {MT.Nombre}");
+                        break;
+                }
+            }
+        }
+
+        
     }
 }
+
