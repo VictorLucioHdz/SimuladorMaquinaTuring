@@ -174,6 +174,7 @@ namespace SimuladorMaquinaTuring
                 MT.Simbolo = char.Parse(cmbBusqueda.Text);//Obtenemos el simbolo a buscar del combo box
                 MT.Nombre = "MT" + MTnumero.ToString(); //Le damos un nombre a la maquina turing (esto es opcional, pero puede servir para identificarla en caso de que queramos hacer varias maquinas turing)
                 MT.Operacion = 1; //Operacion 1 es para busqueda
+                MT.Posicion = (int)EmpezarEn.Value; //Obtenemos la posicion de inicio de la busqueda del numeric up down
                 if (radDerecha.Checked)
                 {
                     MT.Direccion = 'D';
@@ -335,7 +336,8 @@ namespace SimuladorMaquinaTuring
         {
             
             char simboloAEncontrar = MT.Simbolo;
-           
+            int Contador = 1;
+
             string Direccion = MT.Direccion.ToString();
             MessageBox.Show(MT.Nombre + MT.Simbolo.ToString() + MT.Direccion.ToString());
             bool encontrado = false;
@@ -347,43 +349,47 @@ namespace SimuladorMaquinaTuring
                 IndicarCabezal(); //Actualizar lo que se está leyendo 
                 lblLeyendo.Text = Leer().ToString();
 
-
-                if (Cinta[Cabezal] == simboloAEncontrar) //Verificamos si el simbolo encontrado en el cabezal es el que buscamos
+                if (Contador >= MT.Posicion)//Si es apartir de la primera celda
                 {
-                    // En caso de que lo sea cambiamos la variable encontrado a true 
-                    encontrado = true;
-                    dgvCinta.Rows[0].Cells[Cabezal].Style.BackColor = Color.Green; // ponemos el fondo en color verde para saber que lo hemos encontrado
-                    await Task.Delay(1000); //usamos el async para que se vea el verde 1 segundo
-                    IndicarCabezal(); // Regresar al color rojo del encavezado
-                    break; // Salimos del ciclo
-                }
 
+                    if (Cinta[Cabezal] == simboloAEncontrar) //Verificamos si el simbolo encontrado en el cabezal es el que buscamos
+                    {
+                        // En caso de que lo sea cambiamos la variable encontrado a true 
+                        encontrado = true;
+                        dgvCinta.Rows[0].Cells[Cabezal].Style.BackColor = Color.Green; // ponemos el fondo en color verde para saber que lo hemos encontrado
+                        await Task.Delay(1000); //usamos el async para que se vea el verde 1 segundo
+                        IndicarCabezal(); // Regresar al color rojo del encavezado
+                        break; // Salimos del ciclo
+                    }
+                }
                 await Task.Delay(500); //Aqui ya usamos lo del async que pusimos al inicio del evento, esto unicamente hace que de un salto
                                        // a otro tenga una espera de medio segundo (es unicamente estetico, lo podemos quitar si da algun problema)
-
+                Contador++;
                 //preguntamos la direccion
-                if (Direccion ==  "D")
-                {
-                    if (Cabezal < Cinta.Count) 
+                
+                    if (Direccion == "D")
                     {
-                        Cabezal++;
+                        if (Cabezal < Cinta.Count)
+                        {
+                            Cabezal++;
+                        }
+                        else
+                        {
+                            break;
+                        }
                     }
-                    else
+                    else //esto es unicamente por si no se encuentra se sale directamente del ciclo 
                     {
-                        break;
+                        if (Cabezal > 0)
+                        {
+                            Cabezal--;
+                        }
+                        else
+                        {
+                            break;
+                        }
                     }
-                }
-                else //esto es unicamente por si no se encuentra se sale directamente del ciclo 
-                {
-                    if (Cabezal > 0)
-                    {
-                        Cabezal--;
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
+                
             }
 
             if (!encontrado)
@@ -436,7 +442,7 @@ namespace SimuladorMaquinaTuring
                     case 2: //Escritura
                         Escribir(MT);
                         break;
-                    case 3: //Marcar
+                    case 3: //Mover
                         // Llamar al método de marcar con el símbolo especificado en MT.Simbolo
                         break;
                     default:
@@ -446,7 +452,43 @@ namespace SimuladorMaquinaTuring
             }
         }
 
-        
+        private void grbBusquedaEscritura_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnMover_Click(object sender, EventArgs e)
+        {
+            MaquinaTuring MT = new MaquinaTuring();
+            MT.Nombre = "MT" + MTnumero.ToString();
+            MT.Operacion = 3; //Operacion 3 es para mover
+            if (radMoverD.Checked)
+            {
+                MT.Direccion = 'D';
+            }
+            if (radMoverIzq.Checked)
+            {
+                MT.Direccion = 'I';
+            }
+
+        }
+
+        private void radMoverD_CheckedChanged(object sender, EventArgs e)
+        {
+            radMoverIzq.Checked = false;
+            radMoverD.Checked = true;
+        }
+
+        private void radMoverIzq_CheckedChanged(object sender, EventArgs e)
+        {
+            radMoverD.Checked = false;
+            radMoverIzq.Checked = true;
+        }
     }
 }
 

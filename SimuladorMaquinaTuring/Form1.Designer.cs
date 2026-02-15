@@ -64,6 +64,12 @@
             this.btnMarcar = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.btnEjecutar = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.EmpezarEn = new System.Windows.Forms.NumericUpDown();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.radMoverIzq = new System.Windows.Forms.RadioButton();
+            this.radMoverD = new System.Windows.Forms.RadioButton();
+            this.btnMover = new System.Windows.Forms.Button();
             this.grbCaptura.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCinta)).BeginInit();
             this.grbMover.SuspendLayout();
@@ -72,6 +78,8 @@
             this.grbBusqueda.SuspendLayout();
             this.grbBusquedaEscritura.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.EmpezarEn)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtCadena
@@ -255,6 +263,8 @@
             // 
             // grbBusqueda
             // 
+            this.grbBusqueda.Controls.Add(this.EmpezarEn);
+            this.grbBusqueda.Controls.Add(this.label11);
             this.grbBusqueda.Controls.Add(this.radIzq);
             this.grbBusqueda.Controls.Add(this.radDerecha);
             this.grbBusqueda.Controls.Add(this.btnBusqueda);
@@ -263,7 +273,7 @@
             this.grbBusqueda.Enabled = false;
             this.grbBusqueda.Location = new System.Drawing.Point(255, 244);
             this.grbBusqueda.Name = "grbBusqueda";
-            this.grbBusqueda.Size = new System.Drawing.Size(176, 179);
+            this.grbBusqueda.Size = new System.Drawing.Size(176, 223);
             this.grbBusqueda.TabIndex = 10;
             this.grbBusqueda.TabStop = false;
             this.grbBusqueda.Text = "Busqueda";
@@ -283,7 +293,7 @@
             // 
             this.radDerecha.AutoSize = true;
             this.radDerecha.Checked = true;
-            this.radDerecha.Location = new System.Drawing.Point(18, 52);
+            this.radDerecha.Location = new System.Drawing.Point(23, 48);
             this.radDerecha.Name = "radDerecha";
             this.radDerecha.Size = new System.Drawing.Size(80, 20);
             this.radDerecha.TabIndex = 6;
@@ -294,7 +304,7 @@
             // 
             // btnBusqueda
             // 
-            this.btnBusqueda.Location = new System.Drawing.Point(41, 140);
+            this.btnBusqueda.Location = new System.Drawing.Point(23, 169);
             this.btnBusqueda.Name = "btnBusqueda";
             this.btnBusqueda.Size = new System.Drawing.Size(105, 33);
             this.btnBusqueda.TabIndex = 5;
@@ -327,24 +337,25 @@
             // 
             // grbBusquedaEscritura
             // 
-            this.grbBusquedaEscritura.Controls.Add(this.txtOcurrencia);
-            this.grbBusquedaEscritura.Controls.Add(this.label8);
             this.grbBusquedaEscritura.Controls.Add(this.btnBuscarYRemplazar);
             this.grbBusquedaEscritura.Controls.Add(this.label7);
+            this.grbBusquedaEscritura.Controls.Add(this.txtOcurrencia);
             this.grbBusquedaEscritura.Controls.Add(this.cboRemplazar);
             this.grbBusquedaEscritura.Controls.Add(this.label6);
+            this.grbBusquedaEscritura.Controls.Add(this.label8);
             this.grbBusquedaEscritura.Controls.Add(this.cboBuscar);
             this.grbBusquedaEscritura.Enabled = false;
-            this.grbBusquedaEscritura.Location = new System.Drawing.Point(23, 340);
+            this.grbBusquedaEscritura.Location = new System.Drawing.Point(1045, 343);
             this.grbBusquedaEscritura.Name = "grbBusquedaEscritura";
             this.grbBusquedaEscritura.Size = new System.Drawing.Size(213, 202);
             this.grbBusquedaEscritura.TabIndex = 11;
             this.grbBusquedaEscritura.TabStop = false;
             this.grbBusquedaEscritura.Text = "cREO QUE  NO NOS SIRVE";
+            this.grbBusquedaEscritura.Enter += new System.EventHandler(this.grbBusquedaEscritura_Enter);
             // 
             // txtOcurrencia
             // 
-            this.txtOcurrencia.Location = new System.Drawing.Point(94, 109);
+            this.txtOcurrencia.Location = new System.Drawing.Point(94, 108);
             this.txtOcurrencia.Name = "txtOcurrencia";
             this.txtOcurrencia.Size = new System.Drawing.Size(51, 22);
             this.txtOcurrencia.TabIndex = 11;
@@ -352,7 +363,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(7, 112);
+            this.label8.Location = new System.Drawing.Point(7, 111);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(81, 16);
             this.label8.TabIndex = 10;
@@ -465,7 +476,7 @@
             // 
             // btnEjecutar
             // 
-            this.btnEjecutar.Location = new System.Drawing.Point(269, 441);
+            this.btnEjecutar.Location = new System.Drawing.Point(263, 494);
             this.btnEjecutar.Name = "btnEjecutar";
             this.btnEjecutar.Size = new System.Drawing.Size(150, 51);
             this.btnEjecutar.TabIndex = 14;
@@ -473,11 +484,76 @@
             this.btnEjecutar.UseVisualStyleBackColor = true;
             this.btnEjecutar.Click += new System.EventHandler(this.btnEjecutar_Click);
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(20, 110);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(74, 16);
+            this.label11.TabIndex = 12;
+            this.label11.Text = "Apartir de : ";
+            // 
+            // EmpezarEn
+            // 
+            this.EmpezarEn.Location = new System.Drawing.Point(95, 108);
+            this.EmpezarEn.Name = "EmpezarEn";
+            this.EmpezarEn.Size = new System.Drawing.Size(51, 22);
+            this.EmpezarEn.TabIndex = 15;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.radMoverIzq);
+            this.groupBox2.Controls.Add(this.radMoverD);
+            this.groupBox2.Controls.Add(this.btnMover);
+            this.groupBox2.Enabled = false;
+            this.groupBox2.Location = new System.Drawing.Point(23, 332);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(176, 138);
+            this.groupBox2.TabIndex = 16;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "MOVER";
+            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
+            // 
+            // radMoverIzq
+            // 
+            this.radMoverIzq.AutoSize = true;
+            this.radMoverIzq.Location = new System.Drawing.Point(16, 43);
+            this.radMoverIzq.Name = "radMoverIzq";
+            this.radMoverIzq.Size = new System.Drawing.Size(83, 20);
+            this.radMoverIzq.TabIndex = 7;
+            this.radMoverIzq.Text = "Izquierda";
+            this.radMoverIzq.UseVisualStyleBackColor = true;
+            this.radMoverIzq.CheckedChanged += new System.EventHandler(this.radMoverIzq_CheckedChanged);
+            // 
+            // radMoverD
+            // 
+            this.radMoverD.AutoSize = true;
+            this.radMoverD.Checked = true;
+            this.radMoverD.Location = new System.Drawing.Point(16, 22);
+            this.radMoverD.Name = "radMoverD";
+            this.radMoverD.Size = new System.Drawing.Size(80, 20);
+            this.radMoverD.TabIndex = 6;
+            this.radMoverD.TabStop = true;
+            this.radMoverD.Text = "Derecha";
+            this.radMoverD.UseVisualStyleBackColor = true;
+            this.radMoverD.CheckedChanged += new System.EventHandler(this.radMoverD_CheckedChanged);
+            // 
+            // btnMover
+            // 
+            this.btnMover.Location = new System.Drawing.Point(22, 81);
+            this.btnMover.Name = "btnMover";
+            this.btnMover.Size = new System.Drawing.Size(105, 33);
+            this.btnMover.TabIndex = 5;
+            this.btnMover.Text = "Agregar";
+            this.btnMover.UseVisualStyleBackColor = true;
+            this.btnMover.Click += new System.EventHandler(this.btnMover_Click);
+            // 
             // x
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1284, 567);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnEjecutar);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.listaOpe);
@@ -506,6 +582,9 @@
             this.grbBusquedaEscritura.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.EmpezarEn)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -548,6 +627,12 @@
         private System.Windows.Forms.Button btnMarcar;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnEjecutar;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.NumericUpDown EmpezarEn;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.RadioButton radMoverIzq;
+        private System.Windows.Forms.RadioButton radMoverD;
+        private System.Windows.Forms.Button btnMover;
     }
 }
 
