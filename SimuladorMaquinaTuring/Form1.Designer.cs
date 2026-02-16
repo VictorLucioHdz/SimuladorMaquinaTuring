@@ -345,12 +345,13 @@
             this.grbBusquedaEscritura.Controls.Add(this.label8);
             this.grbBusquedaEscritura.Controls.Add(this.cboBuscar);
             this.grbBusquedaEscritura.Enabled = false;
-            this.grbBusquedaEscritura.Location = new System.Drawing.Point(1045, 343);
+            this.grbBusquedaEscritura.Location = new System.Drawing.Point(1076, 389);
             this.grbBusquedaEscritura.Name = "grbBusquedaEscritura";
             this.grbBusquedaEscritura.Size = new System.Drawing.Size(213, 202);
             this.grbBusquedaEscritura.TabIndex = 11;
             this.grbBusquedaEscritura.TabStop = false;
             this.grbBusquedaEscritura.Text = "cREO QUE  NO NOS SIRVE";
+            this.grbBusquedaEscritura.Visible = false;
             this.grbBusquedaEscritura.Enter += new System.EventHandler(this.grbBusquedaEscritura_Enter);
             // 
             // txtOcurrencia
