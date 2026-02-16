@@ -71,6 +71,8 @@
             this.radMoverD = new System.Windows.Forms.RadioButton();
             this.btnMover = new System.Windows.Forms.Button();
             this.lblDefinicionFormal = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.lblMaquinas = new System.Windows.Forms.Label();
             this.grbCaptura.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCinta)).BeginInit();
             this.grbMover.SuspendLayout();
@@ -138,7 +140,7 @@
             this.dgvCinta.AllowUserToDeleteRows = false;
             this.dgvCinta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCinta.ColumnHeadersVisible = false;
-            this.dgvCinta.Location = new System.Drawing.Point(470, 176);
+            this.dgvCinta.Location = new System.Drawing.Point(471, 225);
             this.dgvCinta.Name = "dgvCinta";
             this.dgvCinta.ReadOnly = true;
             this.dgvCinta.RowHeadersVisible = false;
@@ -558,11 +560,32 @@
             this.lblDefinicionFormal.Size = new System.Drawing.Size(0, 25);
             this.lblDefinicionFormal.TabIndex = 17;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(495, 176);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(211, 29);
+            this.button1.TabIndex = 18;
+            this.button1.Text = "Eliminar Ultima Maquina";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // lblMaquinas
+            // 
+            this.lblMaquinas.AutoSize = true;
+            this.lblMaquinas.Location = new System.Drawing.Point(734, 141);
+            this.lblMaquinas.Name = "lblMaquinas";
+            this.lblMaquinas.Size = new System.Drawing.Size(20, 16);
+            this.lblMaquinas.TabIndex = 19;
+            this.lblMaquinas.Text = "→";
+            // 
             // x
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1284, 567);
+            this.Controls.Add(this.lblMaquinas);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.lblDefinicionFormal);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnEjecutar);
@@ -576,7 +599,7 @@
             this.Controls.Add(this.dgvCinta);
             this.Controls.Add(this.grbCaptura);
             this.Name = "x";
-            this.Text = "Form1";
+            this.Text = "SIMULADOR DE MAQUINA DE TURING";
             this.Load += new System.EventHandler(this.x_Load);
             this.grbCaptura.ResumeLayout(false);
             this.grbCaptura.PerformLayout();
@@ -646,6 +669,8 @@
         private System.Windows.Forms.RadioButton radMoverD;
         private System.Windows.Forms.Button btnMover;
         private System.Windows.Forms.Label lblDefinicionFormal;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label lblMaquinas;
     }
 }
 

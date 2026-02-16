@@ -181,12 +181,14 @@ namespace SimuladorMaquinaTuring
                 {
                     MT.Direccion = 'D';
                     listaOpe.Items.Add('D' + MT.Simbolo.ToString());
+                    lblMaquinas.Text += "→" + "D" + MT.Simbolo.ToString();
                     Operaciones.Add(MT);
                 }
                 else if (radIzq.Checked)
                 {
                     MT.Direccion = 'I';
                     listaOpe.Items.Add('I' + MT.Simbolo.ToString());
+                    lblMaquinas.Text += "→" + "I" + MT.Simbolo.ToString() ;
                     Operaciones.Add(MT);
                 }
                 else
@@ -219,6 +221,7 @@ namespace SimuladorMaquinaTuring
             MT.Operacion = 2; //Operacion 2 es para escribir
             Operaciones.Add(MT);
             listaOpe.Items.Add( MT.Simbolo.ToString());
+            lblMaquinas.Text += "→" + MT.Simbolo.ToString();
             ActualizarDefinicionFormal();
 
         }
@@ -423,6 +426,7 @@ namespace SimuladorMaquinaTuring
             MT.Nombre = "MT" + MTnumero.ToString();
             MT.Simbolo = '#';
             MT.Operacion = 4; //Operacion 4 es para marcar
+            lblMaquinas.Text += "→"+"#";
             Operaciones.Add(MT);
             listaOpe.Items.Add("#");
             ActualizarDefinicionFormal();
@@ -433,6 +437,7 @@ namespace SimuladorMaquinaTuring
             char simboloAEscribir = MT.Simbolo;
             Cinta.RemoveAt(Cabezal);
             Cinta.Insert(Cabezal, simboloAEscribir);
+
             CargaCinta();
             IndicarCabezal();
         }
@@ -496,6 +501,7 @@ namespace SimuladorMaquinaTuring
             {
                 MT.Direccion = 'D';
                 listaOpe.Items.Add("D");
+                lblMaquinas.Text += "→"+"D" ;
                 Operaciones.Add(MT);
                 
             }
@@ -503,6 +509,7 @@ namespace SimuladorMaquinaTuring
             {
                 MT.Direccion = 'I';
                 listaOpe.Items.Add("I");
+                lblMaquinas.Text += "→" + "I";
                 Operaciones.Add(MT);
             }
 
@@ -559,6 +566,11 @@ namespace SimuladorMaquinaTuring
                 $"q0 = {{ {strQ0} }}\n" +
                 $"Alfabeto Σ = {{ {strSigma} }}\n" +
                 $"Símbolos de cinta Γ = {{ {strGamma} }}";
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+           
         }
     }
 }
