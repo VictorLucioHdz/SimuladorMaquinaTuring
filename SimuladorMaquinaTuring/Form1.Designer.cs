@@ -45,18 +45,20 @@
             this.grbLectura = new System.Windows.Forms.GroupBox();
             this.lblLeyendo = new System.Windows.Forms.Label();
             this.grbBusqueda = new System.Windows.Forms.GroupBox();
+            this.EmpezarEn = new System.Windows.Forms.NumericUpDown();
+            this.label11 = new System.Windows.Forms.Label();
             this.radIzq = new System.Windows.Forms.RadioButton();
             this.radDerecha = new System.Windows.Forms.RadioButton();
             this.btnBusqueda = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.cmbBusqueda = new System.Windows.Forms.ComboBox();
             this.grbBusquedaEscritura = new System.Windows.Forms.GroupBox();
-            this.txtOcurrencia = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.btnBuscarYRemplazar = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
+            this.txtOcurrencia = new System.Windows.Forms.TextBox();
             this.cboRemplazar = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.cboBuscar = new System.Windows.Forms.ComboBox();
             this.listaOpe = new System.Windows.Forms.ListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -64,21 +66,20 @@
             this.btnMarcar = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.btnEjecutar = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
-            this.EmpezarEn = new System.Windows.Forms.NumericUpDown();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.radMoverIzq = new System.Windows.Forms.RadioButton();
             this.radMoverD = new System.Windows.Forms.RadioButton();
             this.btnMover = new System.Windows.Forms.Button();
+            this.lblDefinicionFormal = new System.Windows.Forms.Label();
             this.grbCaptura.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCinta)).BeginInit();
             this.grbMover.SuspendLayout();
             this.grbEscribir.SuspendLayout();
             this.grbLectura.SuspendLayout();
             this.grbBusqueda.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.EmpezarEn)).BeginInit();
             this.grbBusquedaEscritura.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.EmpezarEn)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -278,6 +279,22 @@
             this.grbBusqueda.TabStop = false;
             this.grbBusqueda.Text = "Busqueda";
             // 
+            // EmpezarEn
+            // 
+            this.EmpezarEn.Location = new System.Drawing.Point(95, 108);
+            this.EmpezarEn.Name = "EmpezarEn";
+            this.EmpezarEn.Size = new System.Drawing.Size(51, 22);
+            this.EmpezarEn.TabIndex = 15;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(20, 110);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(74, 16);
+            this.label11.TabIndex = 12;
+            this.label11.Text = "Apartir de : ";
+            // 
             // radIzq
             // 
             this.radIzq.AutoSize = true;
@@ -354,22 +371,6 @@
             this.grbBusquedaEscritura.Visible = false;
             this.grbBusquedaEscritura.Enter += new System.EventHandler(this.grbBusquedaEscritura_Enter);
             // 
-            // txtOcurrencia
-            // 
-            this.txtOcurrencia.Location = new System.Drawing.Point(94, 108);
-            this.txtOcurrencia.Name = "txtOcurrencia";
-            this.txtOcurrencia.Size = new System.Drawing.Size(51, 22);
-            this.txtOcurrencia.TabIndex = 11;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(7, 111);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(81, 16);
-            this.label8.TabIndex = 10;
-            this.label8.Text = "Ocurrencia : ";
-            // 
             // btnBuscarYRemplazar
             // 
             this.btnBuscarYRemplazar.Location = new System.Drawing.Point(66, 163);
@@ -388,6 +389,13 @@
             this.label7.Size = new System.Drawing.Size(102, 16);
             this.label7.TabIndex = 8;
             this.label7.Text = "Remplazar por :";
+            // 
+            // txtOcurrencia
+            // 
+            this.txtOcurrencia.Location = new System.Drawing.Point(94, 108);
+            this.txtOcurrencia.Name = "txtOcurrencia";
+            this.txtOcurrencia.Size = new System.Drawing.Size(51, 22);
+            this.txtOcurrencia.TabIndex = 11;
             // 
             // cboRemplazar
             // 
@@ -411,6 +419,15 @@
             this.label6.Size = new System.Drawing.Size(66, 16);
             this.label6.TabIndex = 6;
             this.label6.Text = "Busacar : ";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(7, 111);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(81, 16);
+            this.label8.TabIndex = 10;
+            this.label8.Text = "Ocurrencia : ";
             // 
             // cboBuscar
             // 
@@ -485,22 +502,6 @@
             this.btnEjecutar.UseVisualStyleBackColor = true;
             this.btnEjecutar.Click += new System.EventHandler(this.btnEjecutar_Click);
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(20, 110);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(74, 16);
-            this.label11.TabIndex = 12;
-            this.label11.Text = "Apartir de : ";
-            // 
-            // EmpezarEn
-            // 
-            this.EmpezarEn.Location = new System.Drawing.Point(95, 108);
-            this.EmpezarEn.Name = "EmpezarEn";
-            this.EmpezarEn.Size = new System.Drawing.Size(51, 22);
-            this.EmpezarEn.TabIndex = 15;
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.radMoverIzq);
@@ -548,11 +549,21 @@
             this.btnMover.UseVisualStyleBackColor = true;
             this.btnMover.Click += new System.EventHandler(this.btnMover_Click);
             // 
+            // lblDefinicionFormal
+            // 
+            this.lblDefinicionFormal.AutoSize = true;
+            this.lblDefinicionFormal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDefinicionFormal.Location = new System.Drawing.Point(465, 287);
+            this.lblDefinicionFormal.Name = "lblDefinicionFormal";
+            this.lblDefinicionFormal.Size = new System.Drawing.Size(0, 25);
+            this.lblDefinicionFormal.TabIndex = 17;
+            // 
             // x
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1284, 567);
+            this.Controls.Add(this.lblDefinicionFormal);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnEjecutar);
             this.Controls.Add(this.groupBox1);
@@ -578,14 +589,15 @@
             this.grbLectura.PerformLayout();
             this.grbBusqueda.ResumeLayout(false);
             this.grbBusqueda.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.EmpezarEn)).EndInit();
             this.grbBusquedaEscritura.ResumeLayout(false);
             this.grbBusquedaEscritura.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.EmpezarEn)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -633,6 +645,7 @@
         private System.Windows.Forms.RadioButton radMoverIzq;
         private System.Windows.Forms.RadioButton radMoverD;
         private System.Windows.Forms.Button btnMover;
+        private System.Windows.Forms.Label lblDefinicionFormal;
     }
 }
 
