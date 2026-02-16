@@ -75,6 +75,7 @@
             this.lblMaquinas = new System.Windows.Forms.Label();
             this.pnlScroll = new System.Windows.Forms.Panel();
             this.pbDiagrama = new System.Windows.Forms.PictureBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.grbCaptura.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCinta)).BeginInit();
             this.grbMover.SuspendLayout();
@@ -99,11 +100,12 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(19, 22);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(9, 22);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(103, 16);
+            this.label1.Size = new System.Drawing.Size(197, 25);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Alfabeto:  x y z B";
+            this.label1.Text = "Alfabeto: a, b,c, d,e,B";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
@@ -144,13 +146,13 @@
             this.dgvCinta.AllowUserToDeleteRows = false;
             this.dgvCinta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCinta.ColumnHeadersVisible = false;
-            this.dgvCinta.Location = new System.Drawing.Point(471, 225);
+            this.dgvCinta.Location = new System.Drawing.Point(463, 152);
             this.dgvCinta.Name = "dgvCinta";
             this.dgvCinta.ReadOnly = true;
             this.dgvCinta.RowHeadersVisible = false;
             this.dgvCinta.RowHeadersWidth = 51;
             this.dgvCinta.RowTemplate.Height = 24;
-            this.dgvCinta.Size = new System.Drawing.Size(748, 87);
+            this.dgvCinta.Size = new System.Drawing.Size(1126, 87);
             this.dgvCinta.TabIndex = 5;
             this.dgvCinta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCinta_CellContentClick);
             // 
@@ -219,9 +221,11 @@
             // 
             this.cmbEscribir.FormattingEnabled = true;
             this.cmbEscribir.Items.AddRange(new object[] {
-            "x",
-            "y",
-            "z",
+            "a",
+            "b",
+            "c",
+            "d",
+            "e",
             "B"});
             this.cmbEscribir.Location = new System.Drawing.Point(78, 25);
             this.cmbEscribir.Name = "cmbEscribir";
@@ -235,7 +239,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(66, 16);
             this.label3.TabIndex = 0;
-            this.label3.Text = "Simbolo : ";
+            this.label3.Text = "Símbolo : ";
             // 
             // label4
             // 
@@ -251,7 +255,7 @@
             this.grbLectura.Controls.Add(this.lblLeyendo);
             this.grbLectura.Controls.Add(this.label4);
             this.grbLectura.Enabled = false;
-            this.grbLectura.Location = new System.Drawing.Point(737, 25);
+            this.grbLectura.Location = new System.Drawing.Point(480, 29);
             this.grbLectura.Name = "grbLectura";
             this.grbLectura.Size = new System.Drawing.Size(176, 69);
             this.grbLectura.TabIndex = 9;
@@ -283,7 +287,7 @@
             this.grbBusqueda.Size = new System.Drawing.Size(176, 223);
             this.grbBusqueda.TabIndex = 10;
             this.grbBusqueda.TabStop = false;
-            this.grbBusqueda.Text = "Busqueda";
+            this.grbBusqueda.Text = "Búsqueda";
             // 
             // EmpezarEn
             // 
@@ -342,15 +346,17 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(66, 16);
             this.label5.TabIndex = 4;
-            this.label5.Text = "Simbolo : ";
+            this.label5.Text = "Símbolo : ";
             // 
             // cmbBusqueda
             // 
             this.cmbBusqueda.FormattingEnabled = true;
             this.cmbBusqueda.Items.AddRange(new object[] {
-            "x",
-            "y",
-            "z",
+            "a",
+            "b",
+            "c",
+            "d",
+            "e",
             "B",
             "#"});
             this.cmbBusqueda.Location = new System.Drawing.Point(90, 22);
@@ -368,7 +374,7 @@
             this.grbBusquedaEscritura.Controls.Add(this.label8);
             this.grbBusquedaEscritura.Controls.Add(this.cboBuscar);
             this.grbBusquedaEscritura.Enabled = false;
-            this.grbBusquedaEscritura.Location = new System.Drawing.Point(1076, 389);
+            this.grbBusquedaEscritura.Location = new System.Drawing.Point(608, 343);
             this.grbBusquedaEscritura.Name = "grbBusquedaEscritura";
             this.grbBusquedaEscritura.Size = new System.Drawing.Size(213, 202);
             this.grbBusquedaEscritura.TabIndex = 11;
@@ -452,9 +458,9 @@
             // 
             this.listaOpe.FormattingEnabled = true;
             this.listaOpe.ItemHeight = 16;
-            this.listaOpe.Location = new System.Drawing.Point(495, 25);
+            this.listaOpe.Location = new System.Drawing.Point(434, 286);
             this.listaOpe.Name = "listaOpe";
-            this.listaOpe.Size = new System.Drawing.Size(211, 132);
+            this.listaOpe.Size = new System.Drawing.Size(40, 260);
             this.listaOpe.TabIndex = 12;
             // 
             // groupBox1
@@ -496,11 +502,11 @@
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(66, 16);
             this.label9.TabIndex = 0;
-            this.label9.Text = "Simbolo : ";
+            this.label9.Text = "Símbolo : ";
             // 
             // btnEjecutar
             // 
-            this.btnEjecutar.Location = new System.Drawing.Point(263, 494);
+            this.btnEjecutar.Location = new System.Drawing.Point(255, 478);
             this.btnEjecutar.Name = "btnEjecutar";
             this.btnEjecutar.Size = new System.Drawing.Size(150, 51);
             this.btnEjecutar.TabIndex = 14;
@@ -559,25 +565,26 @@
             // 
             this.lblDefinicionFormal.AutoSize = true;
             this.lblDefinicionFormal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDefinicionFormal.Location = new System.Drawing.Point(1, 5);
+            this.lblDefinicionFormal.Location = new System.Drawing.Point(669, 9);
             this.lblDefinicionFormal.Name = "lblDefinicionFormal";
             this.lblDefinicionFormal.Size = new System.Drawing.Size(0, 25);
             this.lblDefinicionFormal.TabIndex = 17;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(495, 176);
+            this.button1.Location = new System.Drawing.Point(1217, 91);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(211, 29);
             this.button1.TabIndex = 18;
             this.button1.Text = "Eliminar Ultima Maquina";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // lblMaquinas
             // 
             this.lblMaquinas.AutoSize = true;
-            this.lblMaquinas.Location = new System.Drawing.Point(734, 141);
+            this.lblMaquinas.Location = new System.Drawing.Point(482, 252);
             this.lblMaquinas.Name = "lblMaquinas";
             this.lblMaquinas.Size = new System.Drawing.Size(20, 16);
             this.lblMaquinas.TabIndex = 19;
@@ -587,26 +594,36 @@
             // 
             this.pnlScroll.AutoScroll = true;
             this.pnlScroll.Controls.Add(this.pbDiagrama);
-            this.pnlScroll.Location = new System.Drawing.Point(439, 319);
+            this.pnlScroll.Location = new System.Drawing.Point(480, 286);
             this.pnlScroll.Name = "pnlScroll";
-            this.pnlScroll.Size = new System.Drawing.Size(637, 245);
+            this.pnlScroll.Size = new System.Drawing.Size(657, 259);
             this.pnlScroll.TabIndex = 20;
             // 
             // pbDiagrama
             // 
             this.pbDiagrama.BackColor = System.Drawing.Color.Transparent;
-            this.pbDiagrama.Location = new System.Drawing.Point(0, 0);
+            this.pbDiagrama.Location = new System.Drawing.Point(5, 4);
             this.pbDiagrama.Name = "pbDiagrama";
             this.pbDiagrama.Size = new System.Drawing.Size(130, 67);
             this.pbDiagrama.TabIndex = 0;
             this.pbDiagrama.TabStop = false;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(275, 478);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(0, 16);
+            this.label12.TabIndex = 16;
             // 
             // x
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1284, 567);
+            this.Controls.Add(this.label12);
             this.Controls.Add(this.pnlScroll);
+            this.Controls.Add(this.grbBusquedaEscritura);
             this.Controls.Add(this.lblMaquinas);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.lblDefinicionFormal);
@@ -614,7 +631,6 @@
             this.Controls.Add(this.btnEjecutar);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.listaOpe);
-            this.Controls.Add(this.grbBusquedaEscritura);
             this.Controls.Add(this.grbBusqueda);
             this.Controls.Add(this.grbLectura);
             this.Controls.Add(this.grbEscribir);
@@ -622,7 +638,7 @@
             this.Controls.Add(this.dgvCinta);
             this.Controls.Add(this.grbCaptura);
             this.Name = "x";
-            this.Text = "SIMULADOR DE MAQUINA DE TURING";
+            this.Text = "7";
             this.Load += new System.EventHandler(this.x_Load);
             this.grbCaptura.ResumeLayout(false);
             this.grbCaptura.PerformLayout();
@@ -699,9 +715,7 @@
         private System.Windows.Forms.Label lblMaquinas;
         private System.Windows.Forms.Panel pnlScroll;
         private System.Windows.Forms.PictureBox pbDiagrama;
-
-   
-
+        private System.Windows.Forms.Label label12;
     }
 }
 
