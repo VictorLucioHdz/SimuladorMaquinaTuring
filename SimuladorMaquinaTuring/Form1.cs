@@ -77,6 +77,8 @@ namespace SimuladorMaquinaTuring
             IndicarCabezal();
             lblLeyendo.Text = Leer().ToString();
 
+            ActualizarDefinicionFormal();
+
         }
 
         private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
@@ -199,6 +201,8 @@ namespace SimuladorMaquinaTuring
                 return;
             }
 
+            ActualizarDefinicionFormal();
+
         }
         private void btnEscribir_Click(object sender, EventArgs e)
         {
@@ -215,6 +219,7 @@ namespace SimuladorMaquinaTuring
             MT.Operacion = 2; //Operacion 2 es para escribir
             Operaciones.Add(MT);
             listaOpe.Items.Add( MT.Simbolo.ToString());
+            ActualizarDefinicionFormal();
 
         }
 
@@ -420,8 +425,8 @@ namespace SimuladorMaquinaTuring
             MT.Operacion = 4; //Operacion 4 es para marcar
             Operaciones.Add(MT);
             listaOpe.Items.Add("#");
-            
-            
+            ActualizarDefinicionFormal();
+
         }
         private void Escribir(MaquinaTuring MT)
         {
@@ -500,8 +505,8 @@ namespace SimuladorMaquinaTuring
                 listaOpe.Items.Add("I");
                 Operaciones.Add(MT);
             }
-            
 
+            ActualizarDefinicionFormal();
         }
 
         private void radMoverD_CheckedChanged(object sender, EventArgs e)
@@ -514,6 +519,46 @@ namespace SimuladorMaquinaTuring
         {
             radMoverD.Checked = false;
             
+        }
+
+        // Estados
+        private void ActualizarDefinicionFormal()
+        {
+            //CONJUNTO DE ESTADOS (Q)
+            List<int> estados = new List<int>();
+            for (int i = 0; i < Operaciones.Count; i++)
+            {
+                estados.Add(i + 1); 
+            }
+            // string.Join une los números con comas: "1, 2, 3"
+            string strQ = estados.Count > 0 ? string.Join(", ", estados) : "ø";
+
+            //ESTADO FINAL (F)
+            string strF = estados.Count > 0 ? estados.Last().ToString() : "ø";
+
+            //ESTADO INICIAL (q0)
+            string strQ0 = estados.Count > 0 ? "1" : "-";
+
+            //ALFABETO DE ENTRADA (Sigma)
+            string strSigma = "x, y, z";
+
+            //ALFABETO DE LA CINTA (usamos un HashSet para evitar duplicados)
+            HashSet<char> simbolosCinta = new HashSet<char>();
+            // agregamos lo que ya existe en la cinta actual
+            foreach (char c in Cinta) simbolosCinta.Add(c);
+            simbolosCinta.Add('B'); 
+            simbolosCinta.Add('#');
+            simbolosCinta.Add('x');
+            simbolosCinta.Add('y');
+            simbolosCinta.Add('z');
+            string strGamma = string.Join(", ", simbolosCinta);
+            //ACTUALIZAR EL LABEL
+            lblDefinicionFormal.Text =
+                $"Q = {{ {strQ} }}\n" +
+                $"F = {{ {strF} }}\n" +
+                $"q0 = {{ {strQ0} }}\n" +
+                $"Alfabeto Σ = {{ {strSigma} }}\n" +
+                $"Símbolos de cinta Γ = {{ {strGamma} }}";
         }
     }
 }
