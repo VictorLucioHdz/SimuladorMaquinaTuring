@@ -73,6 +73,8 @@
             this.lblDefinicionFormal = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.lblMaquinas = new System.Windows.Forms.Label();
+            this.pnlScroll = new System.Windows.Forms.Panel();
+            this.pbDiagrama = new System.Windows.Forms.PictureBox();
             this.grbCaptura.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCinta)).BeginInit();
             this.grbMover.SuspendLayout();
@@ -83,6 +85,8 @@
             this.grbBusquedaEscritura.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.pnlScroll.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbDiagrama)).BeginInit();
             this.SuspendLayout();
             // 
             // txtCadena
@@ -127,7 +131,7 @@
             this.grbCaptura.Controls.Add(this.btnCapturar);
             this.grbCaptura.Controls.Add(this.label1);
             this.grbCaptura.Controls.Add(this.label2);
-            this.grbCaptura.Location = new System.Drawing.Point(23, 25);
+            this.grbCaptura.Location = new System.Drawing.Point(23, 21);
             this.grbCaptura.Name = "grbCaptura";
             this.grbCaptura.Size = new System.Drawing.Size(213, 136);
             this.grbCaptura.TabIndex = 4;
@@ -555,7 +559,7 @@
             // 
             this.lblDefinicionFormal.AutoSize = true;
             this.lblDefinicionFormal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDefinicionFormal.Location = new System.Drawing.Point(465, 287);
+            this.lblDefinicionFormal.Location = new System.Drawing.Point(1, 5);
             this.lblDefinicionFormal.Name = "lblDefinicionFormal";
             this.lblDefinicionFormal.Size = new System.Drawing.Size(0, 25);
             this.lblDefinicionFormal.TabIndex = 17;
@@ -579,11 +583,30 @@
             this.lblMaquinas.TabIndex = 19;
             this.lblMaquinas.Text = "→";
             // 
+            // pnlScroll
+            // 
+            this.pnlScroll.AutoScroll = true;
+            this.pnlScroll.Controls.Add(this.pbDiagrama);
+            this.pnlScroll.Location = new System.Drawing.Point(439, 319);
+            this.pnlScroll.Name = "pnlScroll";
+            this.pnlScroll.Size = new System.Drawing.Size(637, 245);
+            this.pnlScroll.TabIndex = 20;
+            // 
+            // pbDiagrama
+            // 
+            this.pbDiagrama.BackColor = System.Drawing.Color.Transparent;
+            this.pbDiagrama.Location = new System.Drawing.Point(0, 0);
+            this.pbDiagrama.Name = "pbDiagrama";
+            this.pbDiagrama.Size = new System.Drawing.Size(130, 67);
+            this.pbDiagrama.TabIndex = 0;
+            this.pbDiagrama.TabStop = false;
+            // 
             // x
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1284, 567);
+            this.Controls.Add(this.pnlScroll);
             this.Controls.Add(this.lblMaquinas);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.lblDefinicionFormal);
@@ -619,6 +642,8 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.pnlScroll.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbDiagrama)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -669,8 +694,14 @@
         private System.Windows.Forms.RadioButton radMoverD;
         private System.Windows.Forms.Button btnMover;
         private System.Windows.Forms.Label lblDefinicionFormal;
+
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label lblMaquinas;
+        private System.Windows.Forms.Panel pnlScroll;
+        private System.Windows.Forms.PictureBox pbDiagrama;
+
+   
+
     }
 }
 

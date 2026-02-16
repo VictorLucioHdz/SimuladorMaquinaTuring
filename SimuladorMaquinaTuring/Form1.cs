@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing.Drawing2D;
 
 namespace SimuladorMaquinaTuring
 {
@@ -78,6 +79,7 @@ namespace SimuladorMaquinaTuring
             lblLeyendo.Text = Leer().ToString();
 
             ActualizarDefinicionFormal();
+            DibujarDiagrama();
 
         }
 
@@ -204,6 +206,7 @@ namespace SimuladorMaquinaTuring
             }
 
             ActualizarDefinicionFormal();
+            DibujarDiagrama();
 
         }
         private void btnEscribir_Click(object sender, EventArgs e)
@@ -223,6 +226,7 @@ namespace SimuladorMaquinaTuring
             listaOpe.Items.Add( MT.Simbolo.ToString());
             lblMaquinas.Text += "→" + MT.Simbolo.ToString();
             ActualizarDefinicionFormal();
+            DibujarDiagrama();
 
         }
 
@@ -430,6 +434,7 @@ namespace SimuladorMaquinaTuring
             Operaciones.Add(MT);
             listaOpe.Items.Add("#");
             ActualizarDefinicionFormal();
+            DibujarDiagrama();
 
         }
         private void Escribir(MaquinaTuring MT)
@@ -514,6 +519,7 @@ namespace SimuladorMaquinaTuring
             }
 
             ActualizarDefinicionFormal();
+            DibujarDiagrama();
         }
 
         private void radMoverD_CheckedChanged(object sender, EventArgs e)
@@ -571,6 +577,125 @@ namespace SimuladorMaquinaTuring
         private void button1_Click(object sender, EventArgs e)
         {
            
+        }
+        private void DibujarDiagrama()
+        {
+        
+            //CONFIGURACIÓN VISUAL 
+            int radio = 25;           // Tamaño de la bolita
+            int separacion = 140;     // Distancia entre estados
+            int margen = 100;         // Margen extra
+            int xInicial = 60;        // Dónde empieza el dibujo
+
+            // Colores para el fondo
+            Color colorFondo = Color.White;
+            Color colorLineaEstado = Color.Black;     // Círculos 
+            Color colorFlecha = Color.DarkBlue;       // Flechas 
+            Color colorTextoLoop = Color.Red;         // Texto del bucle
+
+            // Calculamos ancho necesario
+            int totalEstados = Operaciones.Count;
+            int anchoRequerido = (totalEstados * separacion) + margen;
+
+            // Ajustar tamaño del PictureBox al contenido (para que el Panel muestre scroll)
+            if (anchoRequerido < pnlScroll.Width) anchoRequerido = pnlScroll.Width;
+
+            pbDiagrama.Width = anchoRequerido;
+            pbDiagrama.Height = pnlScroll.Height - 20; // Ajuste para evitar scroll vertical
+
+            // Crear lienzo
+            Bitmap bmp = new Bitmap(pbDiagrama.Width, pbDiagrama.Height);
+
+            using (Graphics g = Graphics.FromImage(bmp))
+            {
+                g.SmoothingMode = SmoothingMode.AntiAlias; // Líneas suaves
+                g.Clear(colorFondo);
+
+                // configurar "lapices" que se usarán
+                Pen lapizEstado = new Pen(colorLineaEstado, 2);
+
+                Pen lapizFlecha = new Pen(colorFlecha, 2);
+                lapizFlecha.CustomEndCap = new AdjustableArrowCap(4, 4); // Punta de flecha
+
+                Font fuenteEstado = new Font("Segoe UI", 12, FontStyle.Bold);
+                Font fuenteTexto = new Font("Consolas", 9, FontStyle.Bold);
+
+                Brush brochaTexto = Brushes.Black;       // Texto general
+                Brush brochaFlecha = Brushes.DarkBlue;   // Texto de transiciones
+
+                int x = xInicial;
+                int y = pbDiagrama.Height / 2;
+
+                //Dibujar bolitas
+                for (int i = 0; i <= totalEstados; i++)
+                {
+                    //Dibujar estado (circulos)
+                    Rectangle rect = new Rectangle(x - radio, y - radio, radio * 2, radio * 2);
+                    g.DrawEllipse(lapizEstado, rect);
+
+                    //Nombre de los estados (q1, q2, q3, etc)
+                    string nombre = "q" + (i + 1);
+                    SizeF tam = g.MeasureString(nombre, fuenteEstado);
+                    g.DrawString(nombre, fuenteEstado, brochaTexto, x - (tam.Width / 2), y - (tam.Height / 2));
+
+                    //Flechas (Si hay siguiente estado)
+                    if (i < totalEstados)
+                    {
+                        MaquinaTuring op = Operaciones[i];
+                        int xSig = x + separacion;
+
+                        // CASO A: busqueda (Loop + flecha recta)
+                        if (op.Operacion == 1)
+                        {
+                            string dir = op.Direccion == 'D' ? "D" : "I";
+
+                            // Flecha curva (Loop)
+                            DrawSelfLoop(g, lapizFlecha, x, y - radio, $"≠ {op.Simbolo}, {dir}", Brushes.Red);
+
+                            // Flecha recta (Éxito)
+                            g.DrawLine(lapizFlecha, x + radio, y, xSig - radio, y);
+                            g.DrawString($"= {op.Simbolo}", fuenteTexto, brochaFlecha, x + radio + 5, y - 15);
+                        }
+                        // CASO B: movimiento, escritura o marca (Solo flecha recta)
+                        else
+                        {
+                            string texto = "";
+                            if (op.Operacion == 2) texto = $"Escribe {op.Simbolo}";
+                            if (op.Operacion == 3) texto = $"Mueve {op.Direccion}";
+                            if (op.Operacion == 4) texto = "Marca #";
+
+                            g.DrawLine(lapizFlecha, x + radio, y, xSig - radio, y);
+                            g.DrawString(texto, fuenteTexto, brochaFlecha, x + radio + 5, y - 15);
+                        }
+                    }
+                    else // Estado de aceptacion (último estado)
+                    {
+                        // Doble círculo
+                        g.DrawEllipse(lapizEstado, x - radio + 4, y - radio + 4, (radio * 2) - 8, (radio * 2) - 8);
+                    }
+
+                    x += separacion;
+                }
+            }
+
+            pbDiagrama.Image = bmp;
+        }
+        //Metodo auxiliar para dibujar flecha de loop, recibe el Graphics, el Pen, la posicion x del estado, la posicion y del arco, el texto a mostrar y el color del texto
+        private void DrawSelfLoop(Graphics g, Pen p, int x, int yTop, string texto, Brush colorTexto)
+        {
+            // Puntos para la curva Bezier (Arco superior)
+            Point p1 = new Point(x - 5, yTop);
+            Point p2 = new Point(x - 30, yTop - 45); // Control Izq
+            Point p3 = new Point(x + 30, yTop - 45); // Control Der
+            Point p4 = new Point(x + 5, yTop);
+
+            g.DrawBezier(p, p1, p2, p3, p4);
+
+            // Texto centrado arriba de la curva
+            Font f = new Font("Consolas", 8, FontStyle.Bold);
+            SizeF tam = g.MeasureString(texto, f);
+            g.DrawString(texto, f, colorTexto, x - (tam.Width / 2), yTop - 55);
+
         }
     }
 }
