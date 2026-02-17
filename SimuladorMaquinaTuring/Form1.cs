@@ -144,14 +144,20 @@ namespace SimuladorMaquinaTuring
         //     lblLeyendo.Text = Leer().ToString();
         // }
         private void MoverCabezalDerecha()
-        {
-            if (Cabezal < Cinta.Count - 1)
+        {// CASO CRÍTICO: Si el cabezal está en el borde derecho...
+            if (Cabezal == Cinta.Count - 1)
             {
-                Cabezal++;
-                IndicarCabezal();
-                lblLeyendo.Text = Leer().ToString();
+                // ...CREAMOS UNA CELDA NUEVA ANTES DE MOVERNOS
+                ExpandirCinta();
             }
-            
+
+            // Ahora sí avanzamos, porque ya aseguramos que hay piso donde pisar
+            Cabezal++;
+
+            // Actualizamos lo visual
+            IndicarCabezal();
+            lblLeyendo.Text = Leer().ToString();
+
         }
         //Leer la letra que esta en el cabezal
         private char Leer()
@@ -469,67 +475,69 @@ namespace SimuladorMaquinaTuring
         }
         private void Escribir(MaquinaTuring MT)
         {
+            // Lógica: Cambiar en la lista
             char simboloAEscribir = MT.Simbolo;
-            Cinta.RemoveAt(Cabezal);
-            Cinta.Insert(Cabezal, simboloAEscribir);
+            Cinta[Cabezal] = simboloAEscribir;
 
-            CargaCinta();
-            IndicarCabezal();
+            // Visual: Cambiar en el cuadrito (DataGridView)
+            dgvCinta.Rows[0].Cells[Cabezal].Value = simboloAEscribir.ToString();
+
+            // Actualizar etiqueta de lectura
+            lblLeyendo.Text = Leer().ToString();
         }
 
         private void btnEjecutar_Click(object sender, EventArgs e)
         {
-            
-            
-                foreach (MaquinaTuring MT in Operaciones)
+
+
+            // Recorremos todas las operaciones que guardaste
+            foreach (MaquinaTuring MT in Operaciones)
+            {
+                switch (MT.Operacion)
                 {
-                    switch (MT.Operacion)
-                    {
-                        case 1: //Busqueda
-                            MessageBox.Show("Estado :" + MT.Nombre + "\nBuscar : " + MT.Simbolo + " ala " + MT.Direccion);
-                            Buscar(MT);
-                            break;
-                        case 2: //Escritura
-                            MessageBox.Show("Estado :" + MT.Nombre + "\nEscribir el simbolo " + MT.Simbolo);
-                            Escribir(MT);
-                            break;
-                        case 3: //Mover
+                    case 1: // Busqueda
+                        MessageBox.Show("Estado :" + MT.Nombre + "\nBuscar : " + MT.Simbolo + " a la " + MT.Direccion);
+                        Buscar(MT);
+                        break;
 
-                            if (MT.Direccion == 'D')
-                            {
-                                if (Cabezal >= Cinta.Count - 1)
-                                {
-                                    Cinta.Add('B');
-                                Cinta.Add('B');
-                                Cinta.Add('B');
-                                Cinta.Add('B');
-                                Cinta.Add('B');
-                                Cinta.Add('B');
-                                Cinta.Add('B');// Agregar un blanco al final si el cabezal está en el último espacio
+                    case 2: // Escritura
+                        MessageBox.Show("Estado :" + MT.Nombre + "\nEscribir el simbolo " + MT.Simbolo);
+                        Escribir(MT);
+                        break;
 
-                            }
-                                MessageBox.Show("Estado :" + MT.Nombre + "\nMover  a la Derecha");
+                    case 3: // Mover
+                        if (MT.Direccion == 'D')
+                        {
+                            // AQUÍ ESTABA EL ERROR:
+                            // Borré el bloque que agregaba Cinta.Add('B') manualmente.
+                            // Ahora confiamos en que MoverCabezalDerecha() creará solo UN espacio si es necesario.
 
-                                MoverCabezalDerecha();
-                            }
-                            else
-                            {
-                                MessageBox.Show("Estado :" + MT.Nombre + "\nMover  a la Izquierda");
-                                MoverCabezalIzquierda();
-                            }
-                            break;
-                        case 4:
-                            MessageBox.Show("Estado :" + MT.Nombre + "\nMarcar ");
+                            MessageBox.Show("Estado :" + MT.Nombre + "\nMover a la Derecha");
+                            MoverCabezalDerecha();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Estado :" + MT.Nombre + "\nMover a la Izquierda");
+                            MoverCabezalIzquierda();
+                        }
+                        break;
+
+                    case 4: // Marcar
+                        MessageBox.Show("Estado :" + MT.Nombre + "\nMarcar ");
+                        // Lógica de marcado (simple)
+                        if (Cabezal < Cinta.Count)
+                        {
                             Cinta.RemoveAt(Cabezal);
                             Cinta.Insert(Cabezal, '#');
+                        }
+                        break;
 
-                            break;
-                        default:
-                            MessageBox.Show($"Operación desconocida para {MT.Nombre}");
-                            break;
-                    }
+                    default:
+                        MessageBox.Show($"Operación desconocida para {MT.Nombre}");
+                        break;
                 }
-            
+            }
+
         }
 
         private void grbBusquedaEscritura_Enter(object sender, EventArgs e)
@@ -761,6 +769,44 @@ namespace SimuladorMaquinaTuring
         //    // (Opcional) Si usas el triangulito Δ visualmente:
         //    // dgvCinta.Rows[0].Cells[nuevoIndice].Value = "Δ";
         //}
+        private void AgregarOperacion(int tipo, char simbolo, char direccion)
+        {
+            MaquinaTuring MT = new MaquinaTuring();
+            MTnumero++;
+            MT.Nombre = "MT" + MTnumero;
+            MT.Operacion = tipo; // 2=Escribir, 3=Mover
+
+            if (tipo == 2) // Escribir
+            {
+                MT.Simbolo = simbolo;
+                listaOpe.Items.Add($"Escribir {simbolo}");
+                lblMaquinas.Text += $" → {simbolo}";
+            }
+            else if (tipo == 3) // Mover
+            {
+                MT.Direccion = direccion;
+                listaOpe.Items.Add($"Mover {direccion}");
+                lblMaquinas.Text += $" → {direccion}";
+            }
+
+            Operaciones.Add(MT);
+        }
+        private void ExpandirCinta()
+        {
+            // 1. Lógica: Agrega un blanco al final de la lista
+            Cinta.Add('B');
+
+            // 2. Visual: Agrega una columna nueva al DataGridView
+            string nombreColumna = "c" + (Cinta.Count - 1);
+            dgvCinta.Columns.Add(nombreColumna, "");
+
+            // 3. Configuración visual de la nueva celda
+            int indiceNuevaCelda = dgvCinta.Columns.Count - 1;
+            dgvCinta.Columns[indiceNuevaCelda].Width = 40;
+            dgvCinta.Rows[0].Cells[indiceNuevaCelda].Value = "B";
+            dgvCinta.Rows[0].Cells[indiceNuevaCelda].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+        }
     }
+
 }
 
