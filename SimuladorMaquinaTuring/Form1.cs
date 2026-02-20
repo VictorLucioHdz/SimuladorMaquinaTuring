@@ -501,7 +501,7 @@ namespace SimuladorMaquinaTuring
                         break;
 
                     case 2: // Escritura
-                        MessageBox.Show("Estado :" + MT.Nombre + "\nEscribir el simbolo " + MT.Simbolo);
+                        MessageBox.Show("Estado :" + MT.Nombre + "\nEscribir el símbolo " + MT.Simbolo);
                         Escribir(MT);
                         break;
 
@@ -607,7 +607,7 @@ namespace SimuladorMaquinaTuring
             string strQ0 = estados.Count > 0 ? "1" : "-";
 
             //ALFABETO DE ENTRADA (Sigma)
-            string strSigma = "x, y, z";
+            string strSigma = "a,b,c,d,e,";
 
             //ALFABETO DE LA CINTA (usamos un HashSet para evitar duplicados)
             HashSet<char> simbolosCinta = new HashSet<char>();
